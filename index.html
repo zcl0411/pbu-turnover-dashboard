@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>PBU 26骞?鏈堢鑱岀巼鍒嗘瀽鐪嬫澘</title>
+<style>
+:root{--bg:#f5f6fa;--card:#fff;--pri:#4e6ef2;--danger:#e74c3c;--warn:#f39c12;--ok:#27ae60;--txt:#2c3e50;--tx2:#7f8c8d;--bd:#ecf0f1}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh}
+.hd{background:linear-gradient(135deg,#1a1c2e,#1e2a4a,#1a3560);color:#fff;padding:20px 32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.hd h1{font-size:22px;font-weight:700}
+.hd .meta{font-size:12px;color:rgba(255,255,255,.6);margin-top:4px}
+.tabs{display:flex;background:rgba(255,255,255,.08);border-radius:10px;padding:3px}
+.tb{padding:8px 20px;border-radius:8px;border:none;background:0;color:rgba(255,255,255,.7);cursor:pointer;font-size:13px;font-weight:500;transition:.2s}
+.tb.ac{background:rgba(255,255,255,.2);color:#fff}
+.tb:hover:not(.ac){background:rgba(255,255,255,.1)}
+.ct{padding:20px 28px;max-width:1640px;margin:0 auto}
+.kpi{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:18px}
+.kc{background:var(--card);border-radius:14px;padding:18px 20px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.kc .kl{font-size:11px;color:var(--tx2);text-transform:uppercase;letter-spacing:.5px}
+.kc .kv{font-size:28px;font-weight:700;line-height:1.2;margin:6px 0 4px}
+.kc .ks{font-size:11px;color:var(--tx2)}
+.kc .kd{font-size:11px;padding:2px 8px;border-radius:10px;font-weight:600;display:inline-block;margin:4px 0 0}
+.kc .red .kv{color:var(--danger)}.kc .red .kd{background:#fde8e8;color:var(--danger)}
+.kc .orange .kv{color:var(--warn)}.kc .orange .kd{background:#fef3e2;color:#d68910}
+.kc .blue .kv{color:var(--pri)}
+.g2{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-bottom:18px}
+.g22{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
+.gf{margin-bottom:18px}
+.pn{background:var(--card);border-radius:14px;padding:20px 24px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.pn h3{font-size:14px;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.pn h3 .dot{width:8px;height:8px;border-radius:50%;background:var(--pri)}
+.ch{width:100%;overflow:hidden}
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{background:#f8f9fb;padding:9px 12px;text-align:left;font-weight:600;border-bottom:2px solid #e0e4ea;white-space:nowrap;color:var(--tx2);font-size:11px}
+td{padding:9px 12px;border-bottom:1px solid #f0f2f5}
+tr:hover td{background:#f8f9fb}
+tr.st td{background:#f0f3fa;font-weight:600;border-bottom:2px solid #d0d6e4;border-top:1px solid #d0d6e4}
+tr.bt td{background:#eaf0fb;font-weight:700}
+.rb{display:inline-block;padding:2px 8px;border-radius:10px;font-weight:600;font-size:11px}
+.rh{background:#fde8e8;color:var(--danger)}.rm{background:#fef3e2;color:#d68910}.rl{background:#e8f8ef;color:var(--ok)}.rn{color:#ccc}
+.ft{font-size:11px;color:var(--tx2);padding:14px 32px;border-top:1px solid var(--bd);background:var(--card);line-height:1.8}
+.ft strong{color:var(--txt)}
+@media(max-width:1200px){.kpi{grid-template-columns:repeat(3,1fr)}.g2,.g22{grid-template-columns:1fr}}
+@media(max-width:700px){.kpi{grid-template-columns:repeat(2,1fr)}}
+svg text{font-family:inherit}
+</style>
+</head>
+<body>
+<div class="hd"><div><h1>PBU 26骞?鏈堢鑱岀巼鍒嗘瀽</h1><div class="meta">鏁版嵁鍛ㄦ湡锛?026骞?鏈?| 鏁版嵁婧愶細鍚堝苟鑺卞悕鍐?鏈堝簳 | 鏇存柊锛?026-05-25</div></div>
+<div class="tabs"><button class="tb ac" onclick="sw('active')">涓诲姩绂昏亴</button><button class="tb" onclick="sw('full')">鍏ㄩ噺绂昏亴</button></div></div>
+<div class="ct">
+<div class="kpi" id="kpi"></div>
+<div class="g2"><div class="pn"><h3><span class="dot"></span>鍚勯儴闂ㄧ鑱岀巼鎺掑悕</h3><div class="ch" id="c1"></div></div>
+<div class="pn"><h3><span class="dot" style="background:var(--warn)"></span>鍦ㄨ亴浜烘暟鍒嗗竷</h3><div class="ch" id="c2"></div></div></div>
+<div class="g22"><div class="pn"><h3><span class="dot" style="background:var(--ok)"></span>鍚凚U绂昏亴鐜囧姣?/h3><div class="ch" id="c3"></div></div>
+<div class="pn"><h3><span class="dot" style="background:var(--danger)"></span>绂昏亴绫诲瀷鍒嗗竷</h3><div class="ch" id="c4"></div></div></div>
+<div class="g22"><div class="pn"><h3><span class="dot" style="background:#8e44ad"></span>鏈夌鑱岄儴闂?鍦ㄨ亴/绂昏亴鍒嗘瀽</h3><div class="ch" id="c5"></div></div>
+<div class="pn"><h3><span class="dot" style="background:#e67e22"></span>绂昏亴鐜囩儹鍔涘浘</h3><div class="ch" id="c6"></div></div></div>
+<div class="gf"><div class="pn"><h3><span class="dot"></span>鏄庣粏鏁版嵁琛?/h3><div class="tbl" id="tb"></div></div></div>
+<div class="ft"><p><strong>鍙栨暟鍙ｅ緞锛?/strong>鍙?026骞?鏈?0鏃ヤ綋绯诲唴澶栧湪鑱屽憳宸ワ紝鍓旈櫎瀹炰範鐢熴€佸鍖呭憳宸ャ€傜鑱岀巼=绂昏亴浜烘暟/(鏈堝簳鍦ㄨ亴浜烘暟+绂昏亴浜烘暟)</p><p style="color:var(--danger);margin-top:4px">娉細閮ㄥ垎鍛樺伐鏋舵瀯鐩存帴鎸傞潬鍦ㄦ娲蹭竴鍖?涓夊尯锛岄渶鍗曠嫭鍚堣</p></div>
+</div>
+<script>
+// ========== DATA ==========
+const A={t:'涓诲姩绂昏亴',d:[
+{bu:'PBU鍙ｅ哺浜嬩笟閮?,d3:'娆ф床涓€鍖?,d4:'涓归害鍖?,w:5,g:3,t:8,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
+{bu:'',d3:'',d4:'鑻卞浗鍖?,w:15,g:13,t:28,rw:1,rg:0,rt:1,rwR:6.25,rgR:null,rtR:3.45,s:false,ib:false},
+{bu:'',d3:'',d4:'鑽峰叞鍖?,w:9,g:9,t:18,rw:1,rg:0,rt:1,rwR:10,rgR:null,rtR:5.26,s:false,ib:false},
+{bu:'',d3:'',d4:'娆ф床涓€鍖?灏忚',w:30,g:25,t:55,rw:2,rg:0,rt:2,rwR:6.25,rgR:null,rtR:3.51,s:true,ib:false},
+{bu:'',d3:'娆ф床浜屽尯',d4:'姣斿埄鏃跺尯',w:4,g:10,t:14,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
+{bu:'',d3:'',d4:'娉曞浗鍖?,w:38,g:42,t:80,rw:0,rg:1,rt:1,rwR:null,rgR:2.33,rtR:1.23,s:false,ib:false},
+{bu:'',d3:'',d4:'娆ф床浜屽尯 灏忚',w:42,g:52,t:94,rw:0,rg:1,rt:1,rwR:null,rgR:1.89,rtR:1.05,s:true,ib:false},
+{bu:'',d3:'娆ф床涓夊尯',d4:'瑗跨彮鐗欏尯',w:5,g:3,t:8,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
+{bu:'',d3:'',d4:'鎰忓ぇ鍒╁尯',w:8,g:7,t:15,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
+{bu:'',d3:'',d4:'鍖堢墮鍒╁尯',w:4,g:1,t:5,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
+{bu:'',d3:'',d4:'娆ф床涓夊尯 灏忚',w:18,g:11,t:29,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:true,ib:false},
+{bu:'',d3:'婢虫床鍖?,d4:'',w:3,g:1,t:4,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
+{bu:'',d3:'鏃ユ湰鍖?,d4:'',w:5,g:1,t:6,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
+{bu:'',d3:'鍖楃編鍖?,d4:'',w:5,g:10,t:15,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
+{bu:'',d3:'缁忚惀绠＄悊閮?,d4:'',w:6,g:0,t:6,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
+{bu:'',d3:'閿€鍞鏈嶉儴',d4:'',w:9,g:0,t:9,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
+{bu:'',d3:'浜や粯杩愯惀閮?,d4:'',w:14,g:0,t:14,rw:1,rg:0,rt:1,rwR:6.67,rgR:null,rtR:6.67,s:false,ib:false},
+{bu:'',d3:'PBU鎶€鏈儴',d4:'',w:44,g:0,t:44,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
+{bu:'',d3:'鍥涙捣鎹疯繍椤圭洰閮?,d4:'',w:31,g:2,t:33,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
+{bu:'',d3:'PBU鍙ｅ哺浜嬩笟閮?,d4:'鍚堣',w:207,g:102,t:309,rw:3,rg:1,rt:4,rwR:1.43,rgR:0.97,rtR:1.28,s:true,ib:true},
+{bu:'FES璐㈢粡鏉＄嚎',d3:'PBU璐㈠姟閮?,d4:'',w:40,g:0,t:40,rw:3,rg:0,rt:3,rwR:6.98,rgR:null,rtR:6.98,s:false,ib:false},
+{bu:'',d3:'FES璐㈢粡鏉＄嚎',d4:'鍚堣',w:40,g:0,t:40,rw:3,rg:0,rt:3,rwR:6.98,rgR:null,rtR:6.98,s:true,ib:true},
+{bu:'HRAS浜哄姏缁煎悎鏉＄嚎',d3:'PBU HRBP Dept.',d4:'',w:23,g:0,t:23,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
+{bu:'',d3:'HRAS浜哄姏缁煎悎鏉＄嚎',d4:'鍚堣',w:23,g:0,t:23,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:true,ib:true}],
+s:{ts:372,tr:7,or:1.85,wr:2.17,gr:0.97}};
+
+const F={t:'鍏ㄩ噺绂昏亴',d:[
+{bu:'PBU鍙ｅ哺浜嬩笟閮?,d3:'娆ф床涓€鍖?,d4:'涓归害鍖?,w:5,g:3,t:8,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
+{bu:'',d3:'',d4:'鑻卞浗鍖?,w:15,g:13,t:28,rw:1,rg:1,rt:2,rwR:6.25,rgR:7.14,rtR:6.67,s:false,ib:false},
+{bu:'',d3:'',d4:'鑽峰叞鍖?,w:9,g:9,t:18,rw:1,rg:1,rt:2,rwR:10,rgR:10,rtR:10,s:false,ib:false},
+{bu:'',d3:'',d4:'娆ф床涓€鍖?灏忚',w:30,g:25,t:55,rw:2,rg:2,rt:4,rwR:6.25,rgR:7.41,rtR:6.78,s:true,ib:false},
+{bu:'',d3:'娆ф床浜屽尯',d4:'姣斿埄鏃跺尯',w:4,g:10,t:14,rw:1,rg:1,rt:2,rwR:20,rgR:9.09,rtR:12.5,s:false,ib:false},
+{bu:'',d3:'',d4:'娉曞浗鍖?,w:38,g:42,t:80,rw:1,rg:1,rt:2,rwR:2.56,rgR:2.33,rtR:2.44,s:false,ib:false},
+{bu:'',d3:'',d4:'娆ф床浜屽尯 灏忚',w:42,g:52,t:94,rw:2,rg:2,rt:4,rwR:4.55,rgR:3.7,rtR:4.08,s:true,ib:false},
+{bu:'',d3:'娆ф床涓夊尯',d4:'瑗跨彮鐗欏尯',w:5,g:3,t:8,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
+{bu:'',d3:'',d4:'鎰忓ぇ鍒╁尯',w:8,g:7,t:15,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
+{bu:'',d3:'',d4:'鍖堢墮鍒╁尯',w:4,g:1,t:5,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
+{bu:'',d3:'',d4:'娆ф床涓夊尯 灏忚',w:18,g:11,t:29,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:true,ib:false},
+{bu:'',d3:'婢虫床鍖?,d4:'',w:3,g:1,t:4,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
+{bu:'',d3:'鏃ユ湰鍖?,d4:'',w:5,g:1,t:6,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
+{bu:'',d3:'鍖楃編鍖?,d4:'',w:5,g:10,t:15,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
+{bu:'',d3:'缁忚惀绠＄悊閮?,d4:'',w:6,g:0,t:6,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
+{bu:'',d3:'閿€鍞鏈嶉儴',d4:'',w:9,g:0,t:9,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
+{bu:'',d3:'浜や粯杩愯惀閮?,d4:'',w:14,g:0,t:14,rw:1,rg:0,rt:1,rwR:6.67,rgR:null,rtR:6.67,s:false,ib:false},
+{bu:'',d3:'PBU鎶€鏈儴',d4:'',w:44,g:0,t:44,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
+{bu:'',d3:'鍥涙捣鎹疯繍椤圭洰閮?,d4:'',w:31,g:2,t:33,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
+{bu:'',d3:'PBU鍙ｅ哺浜嬩笟閮?,d4:'鍚堣',w:207,g:102,t:309,rw:5,rg:4,rt:9,rwR:2.36,rgR:3.77,rtR:2.83,s:true,ib:true},
+{bu:'FES璐㈢粡鏉＄嚎',d3:'PBU璐㈠姟閮?,d4:'',w:40,g:0,t:40,rw:4,rg:0,rt:4,rwR:9.09,rgR:null,rtR:9.09,s:false,ib:false},
+{bu:'',d3:'FES璐㈢粡鏉＄嚎',d4:'鍚堣',w:40,g:0,t:40,rw:4,rg:0,rt:4,rwR:9.09,rgR:null,rtR:9.09,s:true,ib:true},
+{bu:'HRAS浜哄姏缁煎悎鏉＄嚎',d3:'PBU HRBP Dept.',d4:'',w:23,g:0,t:23,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
+{bu:'',d3:'HRAS浜哄姏缁煎悎鏉＄嚎',d4:'鍚堣',w:23,g:0,t:23,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:true,ib:true}],
+s:{ts:372,tr:13,or:3.38,wr:3.23,gr:3.77}};
+
+let T='active';
+function D(){return T==='active'?A:F;}
+function fr(v){return v===null||v===undefined?'-':v.toFixed(2)+'%';}
+function rc(v){return v===null||v===undefined?'rn':v>=10?'rh':v>=5?'rm':'rl';}
+function lf(d){return d.d.filter(x=>!x.s&&x.t>0);}
+function bu(d){return d.d.filter(x=>x.ib);}
+
+// ========== SVG HELPERS ==========
+function ns(tag){return document.createElementNS('http://www.w3.org/2000/svg',tag);}
+function setAttr(el,attrs){for(let k in attrs)el.setAttribute(k,attrs[k]);return el;}
+
+function barChart(id,labels,values,opts={}){
+  const c=document.getElementById(id);c.innerHTML='';
+  const W=opts.w||c.clientWidth||600,H=opts.h||400;
+  const ml=opts.ml||10,mr=opts.mr||60,mt=opts.mt||20,mb=opts.mb||20;
+  const cw=W-ml-mr,ch=H-mt-mb,n=labels.length;
+  const bw=Math.min(28,cw/n*0.6),gap=cw/n;
+  const maxV=Math.max(...values,1),scale=ch/maxV;
+  const svg=setAttr(ns('svg'),{viewBox:`0 0 ${W} ${H}`,width:W,height:H,style:'display:block'});
+  
+  // Y axis
+  for(let i=0;i<=5;i++){const y=ch-(i*ch/5)+mt;svg.appendChild(setAttr(ns('line'),{x1:ml,x2:ml+cw,y1:y,y2:y,stroke:'#eee','stroke-dasharray':'4,4'}));
+    svg.appendChild(setAttr(ns('text'),{x:ml-6,y:y+4,'text-anchor':'end',fill:'#999','font-size':'10'}).appendChild(document.createTextNode((maxV*i/5).toFixed(1)+'%'))&&null);}
+  
+  // Bars
+  values.forEach((v,i)=>{
+    const bh=v*scale,x=ml+(i+0.5)*gap-bw/2,y=ch-bh+mt;
+    let color=opts.colors?opts.colors[i]:'#4e6ef2';
+    if(!opts.colors)color=v>=10?'#e74c3c':v>=5?'#f39c12':v>=3?'#4e6ef2':'#27ae60';
+    svg.appendChild(setAttr(ns('rect'),{x,y,width:bw,height:bh,fill:color,rx:4}));
+    svg.appendChild(setAttr(ns('text'),{x:x+bw/2,y:y-4,'text-anchor':'middle',fill:'#333','font-size':'10','font-weight':'bold'}).appendChild(document.createTextNode(fr(v)))&&null);
+    svg.appendChild(setAttr(ns('text'),{x:x+bw/2,y:ch+mt+14,'text-anchor':opts.rotate?'end':'middle',fill:'#666','font-size':'9',transform:opts.rotate?`rotate(-30,${x+bw/2},${ch+mt+14})`:''}).appendChild(document.createTextNode(labels[i]))&&null);
+  });
+  c.appendChild(svg);
+}
+
+function donutChart(id,labels,values,centerText){
+  const c=document.getElementById(id);c.innerHTML='';
+  const W=c.clientWidth||400,H=opts.h||380,R=Math.min(W,H)/2-40,r=R*0.55;
+  const svg=setAttr(ns('svg'),{viewBox:`0 0 ${W} ${H}`,width:W,height:H,style:'display:block'});
+  const cx=W/2,cy=H/2-10,total=values.reduce((a,b)=>a+b,0);
+  const colors=['#4e6ef2','#27ae60','#f39c12','#e74c3c','#8e44ad','#1abc9c'];
+  let angle=-Math.PI/2;
+  values.forEach((v,i)=>{
+    const slice=v/total*Math.PI*2;
+    const x1=cx+R*Math.cos(angle),y1=cy+R*Math.sin(angle);
+    const x2=cx+R*Math.cos(angle+slice),y2=cy+R*Math.sin(angle+slice);
+    const large=slice>Math.PI?1:0;
+    const x1i=cx+r*Math.cos(angle),y1i=cy+r*Math.sin(angle);
+    const x2i=cx+r*Math.cos(angle+slice),y2i=cy+r*Math.sin(angle+slice);
+    const d=`M${x1i} ${y1i} L${x1} ${y1} A${R} ${R} 0 ${large} 1 ${x2} ${y2} L${x2i} ${y2i} A${r} ${r} 0 ${large} 0 ${x1i} ${y1i} Z`;
+    svg.appendChild(setAttr(ns('path'),{d,fill:colors[i%colors.length],stroke:'#fff','stroke-width':2}));
+    const ma=angle+slice/2,mlx=cx+(R+25)*Math.cos(ma),mly=cy+(R+25)*Math.sin(ma);
+    svg.appendChild(setAttr(ns('text'),{x:mlx,y:mly,fill:'#555','font-size':'10','text-anchor':mlx>cx?'start':'end'}).appendChild(document.createTextNode(labels[i]+' '+(v/total*100).toFixed(0)+'%'))&&null);
+    angle+=slice;
+  });
+  svg.appendChild(setAttr(ns('text'),{x:cx,y:cy-4,'text-anchor':'middle',fill:'#2c3e50','font-size':'13','font-weight':'bold'}).appendChild(document.createTextNode(centerText))&&null);
+  svg.appendChild(setAttr(ns('text'),{x:cx,y:cy+14,'text-anchor':'middle',fill:'#2c3e50','font-size':'15','font-weight':'bold'}).appendChild(document.createTextNode(total))&&null);
+  c.appendChild(svg);
+}
+
+function groupedBar(id,labels,series,opts={}){
+  const c=document.getElementById(id);c.innerHTML='';
+  const W=opts.w||c.clientWidth||500,H=opts.h||360;
+  const ml=opts.ml||10,mr=opts.mr||20,mt=opts.mt||20,mb=opts.mb||55;
+  const cw=W-ml-mr,ch=H-mt-mb,n=labels.length;
+  const gap=cw/n,serN=series.length,bw=Math.min(20,gap/(serN+1));
+  const allV=series.flat();const maxV=Math.max(...allV,1);const scale=ch/maxV;
+  const svg=setAttr(ns('svg'),{viewBox:`0 0 ${W} ${H}`,width:W,height:H,style:'display:block'});
+  for(let i=0;i<=4;i++){const y=ch-(i*ch/4)+mt;svg.appendChild(setAttr(ns('line'),{x1:ml,x2:ml+cw,y1:y,y2:y,stroke:'#eee','stroke-dasharray':'4,4'}));
+    svg.appendChild(setAttr(ns('text'),{x:ml-6,y:y+4,'text-anchor':'end',fill:'#999','font-size':'10'}).appendChild(document.createTextNode((maxV*i/4).toFixed(1)+'%'))&&null);}
+  series.forEach((ser,si)=>{
+    const col=si===0?'#4e6ef2':si===1?'#f39c12':'#e74c3c';
+    ser.forEach((v,i)=>{
+      const bh=v*scale,x=ml+(i+0.5)*gap-(serN*bw)/2+si*bw,y=ch-bh+mt;
+      svg.appendChild(setAttr(ns('rect'),{x,y,width:bw-2,height:bh,fill:col,rx:3}));
+      svg.appendChild(setAttr(ns('text'),{x:x+bw/2-1,y:y-3,'text-anchor':'middle',fill:'#333','font-size':'8',fontWeight:si===2?'bold':''}).appendChild(document.createTextNode(fr(v)))&&null);
+    });
+  });
+  labels.forEach((l,i)=>{
+    svg.appendChild(setAttr(ns('text'),{x:ml+(i+0.5)*gap,y:ch+mt+14,'text-anchor':opts.rotate?'end':'middle',fill:'#666','font-size':'9',transform:opts.rotate?`rotate(-20,${ml+(i+0.5)*gap},${ch+mt+14})`:''}).appendChild(document.createTextNode(l))&&null);
+  });
+  // legend
+  const leg=['鐧介绂昏亴鐜?,'鐏伴绂昏亴鐜?,'鎬荤鑱岀巼'],lcol=['#4e6ef2','#f39c12','#e74c3c'];
+  leg.forEach((t,i)=>{
+    const lx=ml+10+i*80,ly=ch+mt+35;
+    svg.appendChild(setAttr(ns('rect'),{x:lx,y:ly-8,width:10,height:10,fill:lcol[i],rx:2}));
+    svg.appendChild(setAttr(ns('text'),{x:lx+14,y:ly,fill:'#555','font-size':'9'}).appendChild(document.createTextNode(t))&&null);
+  });
+  c.appendChild(svg);
+}
+
+function heatmapChart(id,rows,cols,data,opts={}){
+  const c=document.getElementById(id);c.innerHTML='';
+  const W=c.clientWidth||500,H=opts.h||380;
+  const ml=90,mr=10,mt=10,mb=60;
+  const cw=W-ml-mr,ch=H-mt-mb;
+  const cw1=cw/cols.length,ch1=Math.min(ch/rows.length,50);
+  const svg=setAttr(ns('svg'),{viewBox:`0 0 ${W} ${H}`,width:W,height:H,style:'display:block'});
+  const maxV=Math.max(...data.map(d=>d[2]),5);
+  const heatColor=v=>{const r=v/maxV;return r>0.75?'#e74c3c':r>0.5?'#f39c12':r>0.25?'#fef9e7':'#e8f8ef';};
+  data.forEach(([ri,ci,v])=>{
+    const x=ml+ci*cw1,y=mt+ri*ch1;
+    svg.appendChild(setAttr(ns('rect'),{x,y,width:cw1-2,height:ch1-2,fill:v===0?'#f5f5f5':heatColor(v),rx:3}));
+    svg.appendChild(setAttr(ns('text'),{x:x+cw1/2,y:y+ch1/2+4,'text-anchor':'middle',fill:v===0?'#ccc':'#fff','font-size':'10','font-weight':'bold'}).appendChild(document.createTextNode(fr(v)))&&null);
+  });
+  rows.forEach((r,i)=>{svg.appendChild(setAttr(ns('text'),{x:ml-6,y:mt+i*ch1+ch1/2+4,'text-anchor':'end',fill:'#555','font-size':'10'}).appendChild(document.createTextNode(r))&&null);});
+  cols.forEach((c,i)=>{svg.appendChild(setAttr(ns('text'),{x:ml+i*cw1+cw1/2,y:mt+rows.length*ch1+14,'text-anchor':'end',fill:'#666','font-size':'8',transform:`rotate(-30,${ml+i*cw1+cw1/2},${mt+rows.length*ch1+14})`}).appendChild(document.createTextNode(c))&&null);});
+  c.appendChild(svg);
+}
+
+// ========== RENDER ==========
+function renderAll(){
+  const d=D(),s=d.s;
+  
+  // KPI
+  const hr=lf(d).filter(x=>x.rtR!==null&&x.rtR>=5).length;
+  const ar=lf(d).filter(x=>x.rtR!==null&&x.rtR>=3).length;
+  const bw=bu(d).reduce((a,b)=>a+b.w,0),bg=bu(d).reduce((a,b)=>a+b.g,0);
+  const rw=bu(d).reduce((a,b)=>a+b.rw,0),rg=bu(d).reduce((a,b)=>a+b.rg,0);
+  document.getElementById('kpi').innerHTML=
+    `<div class="kc blue"><div class="kl">PBU鍦ㄨ亴鎬讳汉鏁?/div><div class="kv">${s.ts}</div><div class="ks">鐧介 ${bw} | 鐏伴 ${bg}</div></div>`+
+    `<div class="kc ${s.tr>5?'red':'orange'}"><div class="kl">${d.t}浜烘暟</div><div class="kv">${s.tr}</div><div class="ks">鐧介 ${rw} | 鐏伴 ${rg}</div></div>`+
+    `<div class="kc ${s.or>=5?'red':s.or>=3?'orange':'blue'}"><div class="kl">${d.t}鐜?/div><div class="kv">${fr(s.or)}</div><div class="ks">鐧介 ${fr(s.wr)} | 鐏伴 ${fr(s.gr)}</div></div>`+
+    `<div class="kc ${hr>0?'red':'orange'}"><div class="kl">楂橀闄╅儴闂?(鈮?%)</div><div class="kv">${hr}</div><div class="kd" style="margin-top:4px">闇€閲嶇偣鍏虫敞</div></div>`+
+    `<div class="kc blue"><div class="kl">闇€鍏虫敞閮ㄩ棬 (鈮?%)</div><div class="kv">${ar}</div><div class="ks">鍏?${lf(d).length} 涓儴闂?/div></div>`;
+
+  // Chart 1: Rate bar
+  const lfs=lf(d).filter(x=>x.rtR!==null).sort((a,b)=>(b.rtR||0)-(a.rtR||0));
+  barChart('c1',lfs.map(x=>{let n=x.d4||x.d3;if(x.bu)n=x.bu+' > '+n;return n;}),lfs.map(x=>x.rtR),{w:680,h:460,ml:10,mr:70,mt:20,mb:20});
+
+  // Chart 2: Donut
+  const bs=bu(d);
+  donutChart('c2',bs.map(x=>(x.bu||x.d3).replace('鍚堣','').trim()),bs.map(x=>x.t),'鍦ㄨ亴浜烘暟');
+
+  // Chart 3: BU compare
+  const bss=bu(d).filter(x=>x.t>0);
+  groupedBar('c3',bss.map(x=>{let n=x.d3;if(x.bu)n=x.bu;return n.replace('鍚堣','').trim();}),[bss.map(x=>x.rwR||0),bss.map(x=>x.rgR||0),bss.map(x=>x.rtR||0)],{w:500,h:380,ml:10,mr:20,mt:20,mb:55,rotate:true});
+
+  // Chart 4: Resign type pie
+  donutChart('c4',['鐧介绂昏亴','鐏伴绂昏亴'],[rw,rg],'绂昏亴鎬绘暟\n'+s.tr);
+
+  // Chart 5: Staff vs Resign
+  const rds=lf(d).filter(x=>x.rt>0).sort((a,b)=>b.t-a.t);
+  groupedBar('c5',rds.map(x=>x.d4||x.d3),[rds.map(x=>x.t),rds.map(x=>x.rt)],{w:500,h:400,ml:10,mr:30,mt:20,mb:55,rotate:true});
+
+  // Chart 6: Heatmap
+  const regions=['娆ф床涓€鍖?,'娆ф床浜屽尯','娆ф床涓夊尯','鍏朵粬鍖哄煙','鑱岃兘閮ㄩ棬'];
+  const deptGroups=[['涓归害鍖?,'鑻卞浗鍖?,'鑽峰叞鍖?],['姣斿埄鏃跺尯','娉曞浗鍖?],['瑗跨彮鐗欏尯','鎰忓ぇ鍒╁尯','鍖堢墮鍒╁尯'],['婢虫床鍖?,'鏃ユ湰鍖?,'鍖楃編鍖?],['缁忚惀绠＄悊閮?,'閿€鍞鏈嶉儴','浜や粯杩愯惀閮?,'PBU鎶€鏈儴','鍥涙捣鎹疯繍椤圭洰閮?]];
+  const hdata=[],hcols=[];
+  deptGroups.forEach((dgs,ri)=>{dgs.forEach(dn=>{const dept=d.d.find(x=>(x.d4===dn||x.d3===dn)&&!x.s);if(dept&&dept.t>0){hdata.push([ri,hcols.length,dept.rtR||0]);hcols.push(dn);}});});
+  heatmapChart('c6',regions,hcols,hdata,{h:400});
+
+  // Table
+  let h='<table><thead><tr><th>浜岀骇缁勭粐</th><th>涓夌骇缁勭粐</th><th>鍥涚骇缁勭粐</th><th>鍦ㄨ亴-鐧介</th><th>鍦ㄨ亴-鐏伴</th><th>鍦ㄨ亴-鎬?/th><th>绂昏亴-鐧介</th><th>绂昏亴-鐏伴</th><th>绂昏亴-鎬?/th><th>绂昏亴鐜?鐧介</th><th>绂昏亴鐜?鐏伴</th><th>绂昏亴鐜?鎬?/th></tr></thead><tbody>';
+  d.d.forEach(r=>{if(r.t===0&&!r.s)return;let cls=r.ib?'bt':r.s?'st':'';h+=`<tr class="${cls}"><td>${r.bu||''}</td><td>${r.d3}</td><td>${r.d4||'-'}</td><td>${r.w}</td><td>${r.g}</td><td><b>${r.t}</b></td><td>${r.rw}</td><td>${r.rg}</td><td><b>${r.rt}</b></td><td><span class="rb ${rc(r.rwR)}">${fr(r.rwR)}</span></td><td><span class="rb ${rc(r.rgR)}">${fr(r.rgR)}</span></td><td><span class="rb ${rc(r.rtR)}">${fr(r.rtR)}</span></td></tr>`;});
+  h+='</tbody></table>';document.getElementById('tb').innerHTML=h;
+}
+
+function sw(t){T=t;document.querySelectorAll('.tb').forEach(b=>b.classList.remove('ac'));document.querySelectorAll('.tb').forEach(b=>{if((t==='active'&&b.textContent.includes('涓诲姩'))||(t==='full'&&b.textContent.includes('鍏ㄩ噺')))b.classList.add('ac');});renderAll();}
+
+renderAll();
+</script>
+</body>
+</html>
