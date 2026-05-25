@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PBU 26骞?鏈堢鑱岀巼鍒嗘瀽鐪嬫澘</title>
+<title>PBU 26年4月离职率分析看板</title>
 <style>
 :root {
   --bg: #f5f6fa;
@@ -107,14 +107,14 @@ tbody tr.row-bu td { border-bottom: 1px solid #c8d6f0; font-size: 13px; }
 <div class="header">
   <div class="header-inner">
     <div class="header-left">
-      <h1>PBU 26骞?鏈堢鑱岀巼鍒嗘瀽 <span class="badge">HR Analytics</span></h1>
-      <div class="meta"><span>鏁版嵁鍛ㄦ湡锛?026骞?鏈?/span><span>鏁版嵁婧愶細鍚堝苟鑺卞悕鍐?鏈堝簳</span><span>鏇存柊锛?026-05-25</span></div>
+      <h1>PBU 26年4月离职率分析 <span class="badge">HR Analytics</span></h1>
+      <div class="meta"><span>数据周期：2026年4月</span><span>数据源：合并花名册4月底</span><span>更新：2026-05-25</span></div>
     </div>
     <div class="header-right">
-      <span class="view-label">鏁版嵁鑼冨洿锛?/span>
+      <span class="view-label">数据范围：</span>
       <div class="tab-group">
-        <button class="tab-btn active" onclick="switchTab('active')">涓诲姩绂昏亴</button>
-        <button class="tab-btn" onclick="switchTab('full')">鍏ㄩ噺绂昏亴</button>
+        <button class="tab-btn active" onclick="switchTab('active')">主动离职</button>
+        <button class="tab-btn" onclick="switchTab('full')">全量离职</button>
       </div>
     </div>
   </div>
@@ -123,27 +123,27 @@ tbody tr.row-bu td { border-bottom: 1px solid #c8d6f0; font-size: 13px; }
 <div class="container">
   <div class="kpi-grid" id="kpiGrid"></div>
   <div class="grid-21">
-    <div class="panel"><div class="panel-header"><h3><span class="dot"></span>鍚勯儴闂ㄧ鑱岀巼鎺掑悕</h3></div><div class="chart-wrap" id="chartRateBar" style="height:500px;"></div></div>
-    <div class="panel"><div class="panel-header"><h3><span class="dot" style="background:var(--warning)"></span>鍦ㄨ亴浜烘暟鍒嗗竷</h3></div><div class="chart-wrap" id="chartComposition" style="height:460px;"></div></div>
+    <div class="panel"><div class="panel-header"><h3><span class="dot"></span>各部门离职率排名</h3></div><div class="chart-wrap" id="chartRateBar" style="height:500px;"></div></div>
+    <div class="panel"><div class="panel-header"><h3><span class="dot" style="background:var(--warning)"></span>在职人数分布</h3></div><div class="chart-wrap" id="chartComposition" style="height:460px;"></div></div>
   </div>
   <div class="grid-2">
-    <div class="panel"><div class="panel-header"><h3><span class="dot" style="background:var(--success)"></span>鍚凚U绂昏亴鐜囧姣?/h3></div><div class="chart-wrap" id="chartBuCompare" style="height:400px;"></div></div>
-    <div class="panel"><div class="panel-header"><h3><span class="dot" style="background:var(--danger)"></span>绂昏亴浜哄憳绫诲瀷鍒嗗竷</h3></div><div class="chart-wrap" id="chartResignType" style="height:400px;"></div></div>
+    <div class="panel"><div class="panel-header"><h3><span class="dot" style="background:var(--success)"></span>各BU离职率对比</h3></div><div class="chart-wrap" id="chartBuCompare" style="height:400px;"></div></div>
+    <div class="panel"><div class="panel-header"><h3><span class="dot" style="background:var(--danger)"></span>离职人员类型分布</h3></div><div class="chart-wrap" id="chartResignType" style="height:400px;"></div></div>
   </div>
   <div class="grid-2">
-    <div class="panel"><div class="panel-header"><h3><span class="dot" style="background:#8e44ad"></span>鏈夌鑱岄儴闂?鍦ㄨ亴/绂昏亴鍒嗘瀽</h3></div><div class="chart-wrap" id="chartStaffResign" style="height:420px;"></div></div>
-    <div class="panel"><div class="panel-header"><h3><span class="dot" style="background:#e67e22"></span>绂昏亴鐜囩儹鍔涘垎鏋?/h3></div><div class="chart-wrap" id="chartHeatmap" style="height:420px;"></div></div>
+    <div class="panel"><div class="panel-header"><h3><span class="dot" style="background:#8e44ad"></span>有离职部门-在职/离职分析</h3></div><div class="chart-wrap" id="chartStaffResign" style="height:420px;"></div></div>
+    <div class="panel"><div class="panel-header"><h3><span class="dot" style="background:#e67e22"></span>离职率热力分析</h3></div><div class="chart-wrap" id="chartHeatmap" style="height:420px;"></div></div>
   </div>
   <div class="grid-full">
-    <div class="panel"><div class="panel-header"><h3><span class="dot"></span>鏄庣粏鏁版嵁琛?/h3></div><div class="table-wrap" id="dataTable"></div></div>
+    <div class="panel"><div class="panel-header"><h3><span class="dot"></span>明细数据表</h3></div><div class="table-wrap" id="dataTable"></div></div>
   </div>
   <div class="footer">
-    <p><strong>鍙栨暟鍙ｅ緞锛?/strong></p>
-    <p>1. 鍙栨暟鑼冨洿锛氬彇2026骞?鏈?0鏃ヤ綋绯诲唴澶栧湪鑱屽憳宸ワ紝鍓旈櫎瀹炰範鐢熴€佸鍖呭憳宸?/p>
-    <p>2. 绂昏亴鐜?= 绂昏亴浜烘暟 /锛堟湀搴曞湪鑱屼汉鏁?+ 绂昏亴浜烘暟锛?/p>
-    <p>3. 123鏍煎瓙銆佺牬鏍兼檵鍗囥€佽瘎浼樺彇25骞存暟鎹?/p>
-    <p>4. 涓诲姩绂昏亴鐪嬫澘鍙彇涓诲姩绂昏亴鐨勭鑱屾暟鎹紱鍏ㄩ噺鐪嬫澘鍖呭惈鎵€鏈夌鑱岀被鍨?/p>
-    <p style="margin-top:4px;color:var(--danger)">娉細閮ㄥ垎鍛樺伐鏋舵瀯鐩存帴鎸傞潬鍦ㄦ娲蹭竴鍖?涓夊尯锛岄渶鍗曠嫭鍚堣</p>
+    <p><strong>取数口径：</strong></p>
+    <p>1. 取数范围：取2026年4月30日体系内外在职员工，剔除实习生、外包员工</p>
+    <p>2. 离职率 = 离职人数 /（月底在职人数 + 离职人数）</p>
+    <p>3. 123格子、破格晋升、评优取25年数据</p>
+    <p>4. 主动离职看板只取主动离职的离职数据；全量看板包含所有离职类型</p>
+    <p style="margin-top:4px;color:var(--danger)">注：部分员工架构直接挂靠在欧洲一区/三区，需单独合计</p>
   </div>
 </div>
 
@@ -158,65 +158,65 @@ if(typeof echarts==='undefined'){
 // If still no echarts, show error
 window.addEventListener('DOMContentLoaded',function(){
   if(typeof echarts==='undefined'){
-    document.body.innerHTML='<div style="text-align:center;padding:60px;font-family:sans-serif"><h2>鍥捐〃搴撳姞杞藉け璐?/h2><p style="color:#666;margin:10px 0">璇峰皾璇曞埛鏂伴〉闈紝鎴栦笅杞界绾跨増鏂囦欢</p><p style="color:#999;font-size:13px">濡傛寔缁け璐ワ紝璇蜂娇鐢ㄩ檮甯︾殑鑷寘鍚増鏈?/p></div>';
+    document.body.innerHTML='<div style="text-align:center;padding:60px;font-family:sans-serif"><h2>图表库加载失败</h2><p style="color:#666;margin:10px 0">请尝试刷新页面，或下载离线版文件</p><p style="color:#999;font-size:13px">如持续失败，请使用附带的自包含版本</p></div>';
     return;
   }
   init();
 });
 
 // ========== DATA ==========
-const activeData={title:'涓诲姩绂昏亴',depts:[
-{bu:'PBU鍙ｅ哺浜嬩笟閮?,d3:'娆ф床涓€鍖?,d4:'涓归害鍖?,w:5,g:3,t:8,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
-{bu:'',d3:'',d4:'鑻卞浗鍖?,w:15,g:13,t:28,rw:1,rg:0,rt:1,rwR:6.25,rgR:null,rtR:3.45,sub:false,isBu:false},
-{bu:'',d3:'',d4:'鑽峰叞鍖?,w:9,g:9,t:18,rw:1,rg:0,rt:1,rwR:10.0,rgR:null,rtR:5.26,sub:false,isBu:false},
-{bu:'',d3:'',d4:'娆ф床涓€鍖?灏忚',w:30,g:25,t:55,rw:2,rg:0,rt:2,rwR:6.25,rgR:null,rtR:3.51,sub:true,isBu:false},
-{bu:'',d3:'娆ф床浜屽尯',d4:'姣斿埄鏃跺尯',w:4,g:10,t:14,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
-{bu:'',d3:'',d4:'娉曞浗鍖?,w:38,g:42,t:80,rw:0,rg:1,rt:1,rwR:null,rgR:2.33,rtR:1.23,sub:false,isBu:false},
-{bu:'',d3:'',d4:'娆ф床浜屽尯 灏忚',w:42,g:52,t:94,rw:0,rg:1,rt:1,rwR:null,rgR:1.89,rtR:1.05,sub:true,isBu:false},
-{bu:'',d3:'娆ф床涓夊尯',d4:'瑗跨彮鐗欏尯',w:5,g:3,t:8,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
-{bu:'',d3:'',d4:'鎰忓ぇ鍒╁尯',w:8,g:7,t:15,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
-{bu:'',d3:'',d4:'鍖堢墮鍒╁尯',w:4,g:1,t:5,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
-{bu:'',d3:'',d4:'娆ф床涓夊尯 灏忚',w:18,g:11,t:29,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:true,isBu:false},
-{bu:'',d3:'婢虫床鍖?,d4:'',w:3,g:1,t:4,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
-{bu:'',d3:'鏃ユ湰鍖?,d4:'',w:5,g:1,t:6,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
-{bu:'',d3:'鍖楃編鍖?,d4:'',w:5,g:10,t:15,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
-{bu:'',d3:'缁忚惀绠＄悊閮?,d4:'',w:6,g:0,t:6,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
-{bu:'',d3:'閿€鍞鏈嶉儴',d4:'',w:9,g:0,t:9,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
-{bu:'',d3:'浜や粯杩愯惀閮?,d4:'',w:14,g:0,t:14,rw:1,rg:0,rt:1,rwR:6.67,rgR:null,rtR:6.67,sub:false,isBu:false},
-{bu:'',d3:'PBU鎶€鏈儴',d4:'',w:44,g:0,t:44,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
-{bu:'',d3:'鍥涙捣鎹疯繍椤圭洰閮?,d4:'',w:31,g:2,t:33,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
-{bu:'',d3:'PBU鍙ｅ哺浜嬩笟閮?,d4:'鍚堣',w:207,g:102,t:309,rw:3,rg:1,rt:4,rwR:1.43,rgR:0.97,rtR:1.28,sub:true,isBu:true},
-{bu:'FES璐㈢粡鏉＄嚎',d3:'PBU璐㈠姟閮?,d4:'',w:40,g:0,t:40,rw:3,rg:0,rt:3,rwR:6.98,rgR:null,rtR:6.98,sub:false,isBu:false},
-{bu:'',d3:'FES璐㈢粡鏉＄嚎',d4:'鍚堣',w:40,g:0,t:40,rw:3,rg:0,rt:3,rwR:6.98,rgR:null,rtR:6.98,sub:true,isBu:true},
-{bu:'HRAS浜哄姏缁煎悎鏉＄嚎',d3:'PBU HRBP Dept.',d4:'',w:23,g:0,t:23,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
-{bu:'',d3:'HRAS浜哄姏缁煎悎鏉＄嚎',d4:'鍚堣',w:23,g:0,t:23,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:true,isBu:true},
+const activeData={title:'主动离职',depts:[
+{bu:'PBU口岸事业部',d3:'欧洲一区',d4:'丹麦区',w:5,g:3,t:8,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'',d4:'英国区',w:15,g:13,t:28,rw:1,rg:0,rt:1,rwR:6.25,rgR:null,rtR:3.45,sub:false,isBu:false},
+{bu:'',d3:'',d4:'荷兰区',w:9,g:9,t:18,rw:1,rg:0,rt:1,rwR:10.0,rgR:null,rtR:5.26,sub:false,isBu:false},
+{bu:'',d3:'',d4:'欧洲一区 小计',w:30,g:25,t:55,rw:2,rg:0,rt:2,rwR:6.25,rgR:null,rtR:3.51,sub:true,isBu:false},
+{bu:'',d3:'欧洲二区',d4:'比利时区',w:4,g:10,t:14,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'',d4:'法国区',w:38,g:42,t:80,rw:0,rg:1,rt:1,rwR:null,rgR:2.33,rtR:1.23,sub:false,isBu:false},
+{bu:'',d3:'',d4:'欧洲二区 小计',w:42,g:52,t:94,rw:0,rg:1,rt:1,rwR:null,rgR:1.89,rtR:1.05,sub:true,isBu:false},
+{bu:'',d3:'欧洲三区',d4:'西班牙区',w:5,g:3,t:8,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'',d4:'意大利区',w:8,g:7,t:15,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'',d4:'匈牙利区',w:4,g:1,t:5,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'',d4:'欧洲三区 小计',w:18,g:11,t:29,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:true,isBu:false},
+{bu:'',d3:'澳洲区',d4:'',w:3,g:1,t:4,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'日本区',d4:'',w:5,g:1,t:6,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'北美区',d4:'',w:5,g:10,t:15,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'经营管理部',d4:'',w:6,g:0,t:6,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'销售客服部',d4:'',w:9,g:0,t:9,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'交付运营部',d4:'',w:14,g:0,t:14,rw:1,rg:0,rt:1,rwR:6.67,rgR:null,rtR:6.67,sub:false,isBu:false},
+{bu:'',d3:'PBU技术部',d4:'',w:44,g:0,t:44,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'四海捷运项目部',d4:'',w:31,g:2,t:33,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'PBU口岸事业部',d4:'合计',w:207,g:102,t:309,rw:3,rg:1,rt:4,rwR:1.43,rgR:0.97,rtR:1.28,sub:true,isBu:true},
+{bu:'FES财经条线',d3:'PBU财务部',d4:'',w:40,g:0,t:40,rw:3,rg:0,rt:3,rwR:6.98,rgR:null,rtR:6.98,sub:false,isBu:false},
+{bu:'',d3:'FES财经条线',d4:'合计',w:40,g:0,t:40,rw:3,rg:0,rt:3,rwR:6.98,rgR:null,rtR:6.98,sub:true,isBu:true},
+{bu:'HRAS人力综合条线',d3:'PBU HRBP Dept.',d4:'',w:23,g:0,t:23,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'HRAS人力综合条线',d4:'合计',w:23,g:0,t:23,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:true,isBu:true},
 ],sum:{ts:372,tr:7,or:1.85,wr:2.17,gr:0.97}};
 
-const fullData={title:'鍏ㄩ噺绂昏亴',depts:[
-{bu:'PBU鍙ｅ哺浜嬩笟閮?,d3:'娆ф床涓€鍖?,d4:'涓归害鍖?,w:5,g:3,t:8,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
-{bu:'',d3:'',d4:'鑻卞浗鍖?,w:15,g:13,t:28,rw:1,rg:1,rt:2,rwR:6.25,rgR:7.14,rtR:6.67,sub:false,isBu:false},
-{bu:'',d3:'',d4:'鑽峰叞鍖?,w:9,g:9,t:18,rw:1,rg:1,rt:2,rwR:10.0,rgR:10.0,rtR:10.0,sub:false,isBu:false},
-{bu:'',d3:'',d4:'娆ф床涓€鍖?灏忚',w:30,g:25,t:55,rw:2,rg:2,rt:4,rwR:6.25,rgR:7.41,rtR:6.78,sub:true,isBu:false},
-{bu:'',d3:'娆ф床浜屽尯',d4:'姣斿埄鏃跺尯',w:4,g:10,t:14,rw:1,rg:1,rt:2,rwR:20.0,rgR:9.09,rtR:12.5,sub:false,isBu:false},
-{bu:'',d3:'',d4:'娉曞浗鍖?,w:38,g:42,t:80,rw:1,rg:1,rt:2,rwR:2.56,rgR:2.33,rtR:2.44,sub:false,isBu:false},
-{bu:'',d3:'',d4:'娆ф床浜屽尯 灏忚',w:42,g:52,t:94,rw:2,rg:2,rt:4,rwR:4.55,rgR:3.70,rtR:4.08,sub:true,isBu:false},
-{bu:'',d3:'娆ф床涓夊尯',d4:'瑗跨彮鐗欏尯',w:5,g:3,t:8,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
-{bu:'',d3:'',d4:'鎰忓ぇ鍒╁尯',w:8,g:7,t:15,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
-{bu:'',d3:'',d4:'鍖堢墮鍒╁尯',w:4,g:1,t:5,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
-{bu:'',d3:'',d4:'娆ф床涓夊尯 灏忚',w:18,g:11,t:29,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:true,isBu:false},
-{bu:'',d3:'婢虫床鍖?,d4:'',w:3,g:1,t:4,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
-{bu:'',d3:'鏃ユ湰鍖?,d4:'',w:5,g:1,t:6,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
-{bu:'',d3:'鍖楃編鍖?,d4:'',w:5,g:10,t:15,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
-{bu:'',d3:'缁忚惀绠＄悊閮?,d4:'',w:6,g:0,t:6,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
-{bu:'',d3:'閿€鍞鏈嶉儴',d4:'',w:9,g:0,t:9,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
-{bu:'',d3:'浜や粯杩愯惀閮?,d4:'',w:14,g:0,t:14,rw:1,rg:0,rt:1,rwR:6.67,rgR:null,rtR:6.67,sub:false,isBu:false},
-{bu:'',d3:'PBU鎶€鏈儴',d4:'',w:44,g:0,t:44,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
-{bu:'',d3:'鍥涙捣鎹疯繍椤圭洰閮?,d4:'',w:31,g:2,t:33,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
-{bu:'',d3:'PBU鍙ｅ哺浜嬩笟閮?,d4:'鍚堣',w:207,g:102,t:309,rw:5,rg:4,rt:9,rwR:2.36,rgR:3.77,rtR:2.83,sub:true,isBu:true},
-{bu:'FES璐㈢粡鏉＄嚎',d3:'PBU璐㈠姟閮?,d4:'',w:40,g:0,t:40,rw:4,rg:0,rt:4,rwR:9.09,rgR:null,rtR:9.09,sub:false,isBu:false},
-{bu:'',d3:'FES璐㈢粡鏉＄嚎',d4:'鍚堣',w:40,g:0,t:40,rw:4,rg:0,rt:4,rwR:9.09,rgR:null,rtR:9.09,sub:true,isBu:true},
-{bu:'HRAS浜哄姏缁煎悎鏉＄嚎',d3:'PBU HRBP Dept.',d4:'',w:23,g:0,t:23,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
-{bu:'',d3:'HRAS浜哄姏缁煎悎鏉＄嚎',d4:'鍚堣',w:23,g:0,t:23,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:true,isBu:true},
+const fullData={title:'全量离职',depts:[
+{bu:'PBU口岸事业部',d3:'欧洲一区',d4:'丹麦区',w:5,g:3,t:8,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'',d4:'英国区',w:15,g:13,t:28,rw:1,rg:1,rt:2,rwR:6.25,rgR:7.14,rtR:6.67,sub:false,isBu:false},
+{bu:'',d3:'',d4:'荷兰区',w:9,g:9,t:18,rw:1,rg:1,rt:2,rwR:10.0,rgR:10.0,rtR:10.0,sub:false,isBu:false},
+{bu:'',d3:'',d4:'欧洲一区 小计',w:30,g:25,t:55,rw:2,rg:2,rt:4,rwR:6.25,rgR:7.41,rtR:6.78,sub:true,isBu:false},
+{bu:'',d3:'欧洲二区',d4:'比利时区',w:4,g:10,t:14,rw:1,rg:1,rt:2,rwR:20.0,rgR:9.09,rtR:12.5,sub:false,isBu:false},
+{bu:'',d3:'',d4:'法国区',w:38,g:42,t:80,rw:1,rg:1,rt:2,rwR:2.56,rgR:2.33,rtR:2.44,sub:false,isBu:false},
+{bu:'',d3:'',d4:'欧洲二区 小计',w:42,g:52,t:94,rw:2,rg:2,rt:4,rwR:4.55,rgR:3.70,rtR:4.08,sub:true,isBu:false},
+{bu:'',d3:'欧洲三区',d4:'西班牙区',w:5,g:3,t:8,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'',d4:'意大利区',w:8,g:7,t:15,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'',d4:'匈牙利区',w:4,g:1,t:5,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'',d4:'欧洲三区 小计',w:18,g:11,t:29,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:true,isBu:false},
+{bu:'',d3:'澳洲区',d4:'',w:3,g:1,t:4,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'日本区',d4:'',w:5,g:1,t:6,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'北美区',d4:'',w:5,g:10,t:15,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'经营管理部',d4:'',w:6,g:0,t:6,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'销售客服部',d4:'',w:9,g:0,t:9,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'交付运营部',d4:'',w:14,g:0,t:14,rw:1,rg:0,rt:1,rwR:6.67,rgR:null,rtR:6.67,sub:false,isBu:false},
+{bu:'',d3:'PBU技术部',d4:'',w:44,g:0,t:44,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'四海捷运项目部',d4:'',w:31,g:2,t:33,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'PBU口岸事业部',d4:'合计',w:207,g:102,t:309,rw:5,rg:4,rt:9,rwR:2.36,rgR:3.77,rtR:2.83,sub:true,isBu:true},
+{bu:'FES财经条线',d3:'PBU财务部',d4:'',w:40,g:0,t:40,rw:4,rg:0,rt:4,rwR:9.09,rgR:null,rtR:9.09,sub:false,isBu:false},
+{bu:'',d3:'FES财经条线',d4:'合计',w:40,g:0,t:40,rw:4,rg:0,rt:4,rwR:9.09,rgR:null,rtR:9.09,sub:true,isBu:true},
+{bu:'HRAS人力综合条线',d3:'PBU HRBP Dept.',d4:'',w:23,g:0,t:23,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'HRAS人力综合条线',d4:'合计',w:23,g:0,t:23,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:true,isBu:true},
 ],sum:{ts:372,tr:13,or:3.38,wr:3.23,gr:3.77}};
 
 function init(){
@@ -234,11 +234,11 @@ function renderKPI(){
   const hr=leafs(d).filter(x=>x.rtR!==null&&x.rtR>=5).length;
   const ar=leafs(d).filter(x=>x.rtR!==null&&x.rtR>=3).length;
   document.getElementById('kpiGrid').innerHTML=
-    '<div class="kpi-card"><div class="kpi-icon-wrap blue">&#x1f465;</div><div class="kpi-label">PBU鍦ㄨ亴鎬讳汉鏁?/div><div class="kpi-value">'+s.ts+'</div><div class="kpi-sub"><span>鐧介 '+bw+'</span><span>鐏伴 '+bg_1+'</span></div></div>'+
-    '<div class="kpi-card"><div class="kpi-icon-wrap '+(s.tr>5?'red':'orange')+'">&#x1f6aa;</div><div class="kpi-label">'+d.title+'浜烘暟</div><div class="kpi-value">'+s.tr+'</div><div class="kpi-sub"><span>鐧介 '+rw+'</span><span>鐏伴 '+rg+'</span></div></div>'+
-    '<div class="kpi-card"><div class="kpi-icon-wrap '+(s.or>=5?'red':s.or>=3?'orange':'blue')+'">&#x1f4ca;</div><div class="kpi-label">'+d.title+'鐜?/div><div class="kpi-value">'+fr(s.or)+'</div><div class="kpi-sub"><span>鐧介 '+fr(s.wr)+'</span><span>鐏伴 '+fr(s.gr)+'</span></div></div>'+
-    '<div class="kpi-card"><div class="kpi-icon-wrap '+(hr>0?'red':'orange')+'">&#x26a0;</div><div class="kpi-label">楂橀闄╅儴闂?(鈮?%)</div><div class="kpi-value">'+hr+'</div><div class="kpi-sub">闇€閲嶇偣鍏虫敞</div></div>'+
-    '<div class="kpi-card"><div class="kpi-icon-wrap blue">&#x1f4cb;</div><div class="kpi-label">闇€鍏虫敞閮ㄩ棬 (鈮?%)</div><div class="kpi-value">'+ar+'</div><div class="kpi-sub">鍏?'+leafs(d).length+' 涓儴闂?/div></div>';
+    '<div class="kpi-card"><div class="kpi-icon-wrap blue">&#x1f465;</div><div class="kpi-label">PBU在职总人数</div><div class="kpi-value">'+s.ts+'</div><div class="kpi-sub"><span>白领 '+bw+'</span><span>灰领 '+bg_1+'</span></div></div>'+
+    '<div class="kpi-card"><div class="kpi-icon-wrap '+(s.tr>5?'red':'orange')+'">&#x1f6aa;</div><div class="kpi-label">'+d.title+'人数</div><div class="kpi-value">'+s.tr+'</div><div class="kpi-sub"><span>白领 '+rw+'</span><span>灰领 '+rg+'</span></div></div>'+
+    '<div class="kpi-card"><div class="kpi-icon-wrap '+(s.or>=5?'red':s.or>=3?'orange':'blue')+'">&#x1f4ca;</div><div class="kpi-label">'+d.title+'率</div><div class="kpi-value">'+fr(s.or)+'</div><div class="kpi-sub"><span>白领 '+fr(s.wr)+'</span><span>灰领 '+fr(s.gr)+'</span></div></div>'+
+    '<div class="kpi-card"><div class="kpi-icon-wrap '+(hr>0?'red':'orange')+'">&#x26a0;</div><div class="kpi-label">高风险部门 (≥5%)</div><div class="kpi-value">'+hr+'</div><div class="kpi-sub">需重点关注</div></div>'+
+    '<div class="kpi-card"><div class="kpi-icon-wrap blue">&#x1f4cb;</div><div class="kpi-label">需关注部门 (≥3%)</div><div class="kpi-value">'+ar+'</div><div class="kpi-sub">共 '+leafs(d).length+' 个部门</div></div>';
 }
 
 function renderRateBar(){
@@ -246,46 +246,46 @@ function renderRateBar(){
   const names=lfs.map(x=>{let n=x.d4||x.d3;if(x.bu)n=x.bu+' > '+n;return n;});
   const rates=lfs.map(x=>x.rtR);
   const c=echarts.init(document.getElementById('chartRateBar'));charts.rateBar=c;
-  c.setOption({tooltip:{trigger:'axis',axisPointer:{type:'shadow'},formatter:p=>'<b>'+p[0].name+'</b><br/>绂昏亴鐜? <b style="font-size:16px">'+fr(p[0].value)+'</b>'},
+  c.setOption({tooltip:{trigger:'axis',axisPointer:{type:'shadow'},formatter:p=>'<b>'+p[0].name+'</b><br/>离职率: <b style="font-size:16px">'+fr(p[0].value)+'</b>'},
     grid:{left:10,right:70,top:20,bottom:20,containLabel:true},
     xAxis:{type:'value',axisLabel:{formatter:'{value}%'},splitLine:{lineStyle:{type:'dashed',color:'#eee'}}},
     yAxis:{type:'category',data:names.reverse(),axisLabel:{fontSize:11,width:140,overflow:'truncate'},inverse:true},
     series:[{type:'bar',data:rates.reverse().map(v=>({value:v,itemStyle:{color:v>=10?'#e74c3c':v>=5?'#f39c12':v>=3?'#4e6ef2':'#27ae60',borderRadius:[0,6,6,0]}})),barWidth:22,
       label:{show:true,position:'right',fontSize:11,fontWeight:'bold',formatter:p=>fr(p.value)},
-      markLine:{silent:true,symbol:'none',data:[{xAxis:d.sum.or,label:{formatter:'鏁翠綋 '+fr(d.sum.or),position:'start',fontSize:11},lineStyle:{color:'#e74c3c',type:'dashed',width:2}}]}
+      markLine:{silent:true,symbol:'none',data:[{xAxis:d.sum.or,label:{formatter:'整体 '+fr(d.sum.or),position:'start',fontSize:11},lineStyle:{color:'#e74c3c',type:'dashed',width:2}}]}
     }]
   });
 }
 
 function renderComposition(){
   const d=D(),bs=bus(d);
-  const n=bs.map(x=>(x.bu||x.d3).replace('鍚堣','').trim());
+  const n=bs.map(x=>(x.bu||x.d3).replace('合计','').trim());
   const st=bs.map(x=>x.t);
   const c=echarts.init(document.getElementById('chartComposition'));charts.composition=c;
-  c.setOption({tooltip:{trigger:'item',formatter:'{b}: {c} 浜?({d}%)'},legend:{bottom:0,textStyle:{fontSize:11}},
-    series:[{name:'鍦ㄨ亴浜烘暟',type:'pie',radius:['50%','75%'],center:['50%','47%'],avoidLabelOverlap:false,
+  c.setOption({tooltip:{trigger:'item',formatter:'{b}: {c} 人 ({d}%)'},legend:{bottom:0,textStyle:{fontSize:11}},
+    series:[{name:'在职人数',type:'pie',radius:['50%','75%'],center:['50%','47%'],avoidLabelOverlap:false,
       label:{show:true,formatter:'{b}\n{d}%',fontSize:11},
       data:n.map((nm,i)=>({name:nm,value:st[i],itemStyle:{borderRadius:4,borderColor:'#fff',borderWidth:2}})),
       emphasis:{label:{fontSize:16,fontWeight:'bold'}}
     }],
-    graphic:[{type:'text',left:'center',top:'42%',style:{text:'鍦ㄨ亴\n'+d.sum.ts,textAlign:'center',fontSize:16,fontWeight:'bold',fill:'#2c3e50'}}]
+    graphic:[{type:'text',left:'center',top:'42%',style:{text:'在职\n'+d.sum.ts,textAlign:'center',fontSize:16,fontWeight:'bold',fill:'#2c3e50'}}]
   });
 }
 
 function renderBuCompare(){
   const d=D(),bs=bus(d).filter(x=>x.t>0);
-  const names=bs.map(x=>{let n=x.d3;if(x.bu)n=x.bu;return n.replace('鍚堣','').trim();});
+  const names=bs.map(x=>{let n=x.d3;if(x.bu)n=x.bu;return n.replace('合计','').trim();});
   const wR=bs.map(x=>x.rwR||0),gR=bs.map(x=>x.rgR||0),tR=bs.map(x=>x.rtR||0);
   const c=echarts.init(document.getElementById('chartBuCompare'));charts.buCompare=c;
   c.setOption({tooltip:{trigger:'axis',formatter:function(ps){let r=ps[0].name+'<br/>';ps.forEach(p=>r+=p.marker+p.seriesName+': <b>'+fr(p.value)+'</b><br/>');return r;}},
-    legend:{data:['鐧介绂昏亴鐜?,'鐏伴绂昏亴鐜?,'鎬荤鑱岀巼'],bottom:0,textStyle:{fontSize:11}},
+    legend:{data:['白领离职率','灰领离职率','总离职率'],bottom:0,textStyle:{fontSize:11}},
     grid:{left:10,right:20,top:20,bottom:55,containLabel:true},
     xAxis:{type:'category',data:names,axisLabel:{fontSize:11,rotate:15}},
     yAxis:{type:'value',axisLabel:{formatter:'{value}%'},name:'%'},
     series:[
-      {name:'鐧介绂昏亴鐜?,type:'bar',data:wR,itemStyle:{color:'#4e6ef2',borderRadius:[6,6,0,0]},barWidth:'30%',label:{show:true,position:'top',fontSize:10,formatter:p=>fr(p.value)}},
-      {name:'鐏伴绂昏亴鐜?,type:'bar',data:gR,itemStyle:{color:'#f39c12',borderRadius:[6,6,0,0]},barWidth:'30%',label:{show:true,position:'top',fontSize:10,formatter:p=>fr(p.value)}},
-      {name:'鎬荤鑱岀巼',type:'bar',data:tR,itemStyle:{color:'#e74c3c',borderRadius:[6,6,0,0]},barWidth:'30%',label:{show:true,position:'top',fontSize:10,fontWeight:'bold',formatter:p=>fr(p.value)}}
+      {name:'白领离职率',type:'bar',data:wR,itemStyle:{color:'#4e6ef2',borderRadius:[6,6,0,0]},barWidth:'30%',label:{show:true,position:'top',fontSize:10,formatter:p=>fr(p.value)}},
+      {name:'灰领离职率',type:'bar',data:gR,itemStyle:{color:'#f39c12',borderRadius:[6,6,0,0]},barWidth:'30%',label:{show:true,position:'top',fontSize:10,formatter:p=>fr(p.value)}},
+      {name:'总离职率',type:'bar',data:tR,itemStyle:{color:'#e74c3c',borderRadius:[6,6,0,0]},barWidth:'30%',label:{show:true,position:'top',fontSize:10,fontWeight:'bold',formatter:p=>fr(p.value)}}
     ]
   });
 }
@@ -294,12 +294,12 @@ function renderResignType(){
   const d=D(),rw=bus(d).reduce((a,b)=>a+b.rw,0),rg=bus(d).reduce((a,b)=>a+b.rg,0);
   const c=echarts.init(document.getElementById('chartResignType'));charts.resignType=c;
   c.setOption({tooltip:{trigger:'item'},legend:{bottom:0,textStyle:{fontSize:11}},
-    series:[{name:'绂昏亴绫诲瀷',type:'pie',radius:['45%','70%'],center:['50%','47%'],
-      data:[{name:'鐧介绂昏亴',value:rw,itemStyle:{color:'#4e6ef2'}},{name:'鐏伴绂昏亴',value:rg,itemStyle:{color:'#f39c12'}}],
-      label:{formatter:'{b}: {c}浜篭n({d}%)',fontSize:12},
+    series:[{name:'离职类型',type:'pie',radius:['45%','70%'],center:['50%','47%'],
+      data:[{name:'白领离职',value:rw,itemStyle:{color:'#4e6ef2'}},{name:'灰领离职',value:rg,itemStyle:{color:'#f39c12'}}],
+      label:{formatter:'{b}: {c}人\n({d}%)',fontSize:12},
       emphasis:{label:{fontSize:16,fontWeight:'bold'}}
     }],
-    graphic:[{type:'text',left:'center',top:'42%',style:{text:'绂昏亴鎬绘暟\n'+d.sum.tr,textAlign:'center',fontSize:15,fontWeight:'bold',fill:'#2c3e50'}}]
+    graphic:[{type:'text',left:'center',top:'42%',style:{text:'离职总数\n'+d.sum.tr,textAlign:'center',fontSize:15,fontWeight:'bold',fill:'#2c3e50'}}]
   });
 }
 
@@ -308,33 +308,33 @@ function renderStaffResign(){
   const names=rds.map(x=>x.d4||x.d3),staff=rds.map(x=>x.t),resign=rds.map(x=>x.rt),rates=rds.map(x=>x.rtR);
   const c=echarts.init(document.getElementById('chartStaffResign'));charts.staffResign=c;
   c.setOption({tooltip:{trigger:'axis',axisPointer:{type:'shadow'},formatter:function(ps){let r=ps[0].name+'<br/>';ps.forEach(p=>r+=p.marker+p.seriesName+': <b>'+p.value+'</b><br/>');return r;}},
-    legend:{data:['鍦ㄨ亴浜烘暟','绂昏亴浜烘暟'],bottom:0},
+    legend:{data:['在职人数','离职人数'],bottom:0},
     grid:{left:10,right:50,top:20,bottom:60,containLabel:true},
     xAxis:{type:'category',data:names,axisLabel:{fontSize:11,rotate:20}},
-    yAxis:{type:'value',name:'浜烘暟'},
+    yAxis:{type:'value',name:'人数'},
     series:[
-      {name:'鍦ㄨ亴浜烘暟',type:'bar',data:staff.map(v=>({value:v,itemStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#4e6ef2'},{offset:1,color:'#a0b4f7'}]),borderRadius:[6,6,0,0]}})),barWidth:30,label:{show:true,position:'top',fontSize:10}},
-      {name:'绂昏亴浜烘暟',type:'bar',data:resign.map((v,i)=>({value:v,itemStyle:{color:'#e74c3c',borderRadius:[6,6,0,0]}})),barWidth:30,label:{show:true,position:'top',fontSize:10,fontWeight:'bold',formatter:p=>p.value+' ('+fr(rates[p.dataIndex])+')'}}
+      {name:'在职人数',type:'bar',data:staff.map(v=>({value:v,itemStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#4e6ef2'},{offset:1,color:'#a0b4f7'}]),borderRadius:[6,6,0,0]}})),barWidth:30,label:{show:true,position:'top',fontSize:10}},
+      {name:'离职人数',type:'bar',data:resign.map((v,i)=>({value:v,itemStyle:{color:'#e74c3c',borderRadius:[6,6,0,0]}})),barWidth:30,label:{show:true,position:'top',fontSize:10,fontWeight:'bold',formatter:p=>p.value+' ('+fr(rates[p.dataIndex])+')'}}
     ]
   });
 }
 
 function renderHeatmap(){
-  const d=D(),regions=[{name:'娆ф床涓€鍖?,depts:['涓归害鍖?,'鑻卞浗鍖?,'鑽峰叞鍖?]},{name:'娆ф床浜屽尯',depts:['姣斿埄鏃跺尯','娉曞浗鍖?]},{name:'娆ф床涓夊尯',depts:['瑗跨彮鐗欏尯','鎰忓ぇ鍒╁尯','鍖堢墮鍒╁尯']},{name:'鍏朵粬鍖哄煙',depts:['婢虫床鍖?,'鏃ユ湰鍖?,'鍖楃編鍖?]},{name:'鑱岃兘閮ㄩ棬',depts:['缁忚惀绠＄悊閮?,'閿€鍞鏈嶉儴','浜や粯杩愯惀閮?,'PBU鎶€鏈儴','鍥涙捣鎹疯繍椤圭洰閮?]}];
+  const d=D(),regions=[{name:'欧洲一区',depts:['丹麦区','英国区','荷兰区']},{name:'欧洲二区',depts:['比利时区','法国区']},{name:'欧洲三区',depts:['西班牙区','意大利区','匈牙利区']},{name:'其他区域',depts:['澳洲区','日本区','北美区']},{name:'职能部门',depts:['经营管理部','销售客服部','交付运营部','PBU技术部','四海捷运项目部']}];
   const data=[],xAxis=[];
   regions.forEach((reg,ri)=>{reg.depts.forEach(dn=>{const dept=d.depts.find(x=>(x.d4===dn||x.d3===dn)&&!x.sub);if(dept&&dept.t>0){data.push([ri,xAxis.length,dept.rtR||0]);xAxis.push(dn);}});});
   const c=echarts.init(document.getElementById('chartHeatmap'));charts.heatmap=c;
-  c.setOption({tooltip:{formatter:function(p){let row=regions[p.value[1]];let col=xAxis[p.value[0]];return '<b>'+row.name+' > '+col+'</b><br/>绂昏亴鐜? <b>'+fr(p.value[2])+'</b>';}},
+  c.setOption({tooltip:{formatter:function(p){let row=regions[p.value[1]];let col=xAxis[p.value[0]];return '<b>'+row.name+' > '+col+'</b><br/>离职率: <b>'+fr(p.value[2])+'</b>';}},
     grid:{left:100,right:90,top:10,bottom:60,containLabel:true},
     xAxis:{type:'category',data:xAxis,axisLabel:{fontSize:10,rotate:30},splitArea:{show:true}},
     yAxis:{type:'category',data:regions.map(r=>r.name),axisLabel:{fontSize:11},splitArea:{show:true}},
-    visualMap:{min:0,max:Math.max(...data.map(d=>d[2]),10),calculable:true,orient:'vertical',right:10,top:'center',inRange:{color:['#e8f8ef','#fef9e7','#fde8e8','#e74c3c']},text:['楂?,'浣?],textStyle:{fontSize:10}},
+    visualMap:{min:0,max:Math.max(...data.map(d=>d[2]),10),calculable:true,orient:'vertical',right:10,top:'center',inRange:{color:['#e8f8ef','#fef9e7','#fde8e8','#e74c3c']},text:['高','低'],textStyle:{fontSize:10}},
     series:[{type:'heatmap',data:data.map(d=>[d[1],d[0],d[2]]),label:{show:true,fontSize:11,fontWeight:'bold',formatter:p=>fr(p.value[2])},emphasis:{itemStyle:{shadowBlur:10,shadowColor:'rgba(0,0,0,0.25)'}}}]
   });
 }
 
 function renderTable(){
-  const d=D();let h='<table><thead><tr><th>浜岀骇缁勭粐</th><th>涓夌骇缁勭粐</th><th>鍥涚骇缁勭粐</th><th>鍦ㄨ亴-鐧介</th><th>鍦ㄨ亴-鐏伴</th><th>鍦ㄨ亴-鎬?/th><th>绂昏亴-鐧介</th><th>绂昏亴-鐏伴</th><th>绂昏亴-鎬?/th><th>绂昏亴鐜?鐧介</th><th>绂昏亴鐜?鐏伴</th><th>绂昏亴鐜?鎬?/th></tr></thead><tbody>';
+  const d=D();let h='<table><thead><tr><th>二级组织</th><th>三级组织</th><th>四级组织</th><th>在职-白领</th><th>在职-灰领</th><th>在职-总</th><th>离职-白领</th><th>离职-灰领</th><th>离职-总</th><th>离职率-白领</th><th>离职率-灰领</th><th>离职率-总</th></tr></thead><tbody>';
   d.depts.forEach(r=>{if(r.t===0&&!r.sub)return;let cls=r.isBu?'row-bu':r.sub?'row-subtotal':'';h+='<tr class="'+cls+'"><td>'+ (r.bu||'')+'</td><td>'+r.d3+'</td><td>'+(r.d4||'-')+'</td><td>'+r.w+'</td><td>'+r.g+'</td><td><b>'+r.t+'</b></td><td>'+r.rw+'</td><td>'+r.rg+'</td><td><b>'+r.rt+'</b></td><td><span class="rate-badge '+rc(r.rwR)+'">'+fr(r.rwR)+'</span></td><td><span class="rate-badge '+rc(r.rgR)+'">'+fr(r.rgR)+'</span></td><td><span class="rate-badge '+rc(r.rtR)+'">'+fr(r.rtR)+'</span></td></tr>';});
   h+='</tbody></table>';document.getElementById('dataTable').innerHTML=h;
 }
@@ -345,7 +345,7 @@ function renderAll(){
   renderKPI();renderRateBar();renderComposition();renderBuCompare();
   renderResignType();renderStaffResign();renderHeatmap();renderTable();
 }
-window.switchTab=function(t){tab=t;document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.tab-btn').forEach(b=>{if((t==='active'&&b.textContent.includes('涓诲姩'))||(t==='full'&&b.textContent.includes('鍏ㄩ噺')))b.classList.add('active');});renderAll();};
+window.switchTab=function(t){tab=t;document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.tab-btn').forEach(b=>{if((t==='active'&&b.textContent.includes('主动'))||(t==='full'&&b.textContent.includes('全量')))b.classList.add('active');});renderAll();};
 renderAll();window.addEventListener('resize',()=>Object.values(charts).forEach(c=>{try{c.resize()}catch(e){}}));
 }
 </script>
