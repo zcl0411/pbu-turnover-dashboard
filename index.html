@@ -1,284 +1,353 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PBU 26骞?鏈堢鑱岀巼鍒嗘瀽鐪嬫澘</title>
 <style>
-:root{--bg:#f5f6fa;--card:#fff;--pri:#4e6ef2;--danger:#e74c3c;--warn:#f39c12;--ok:#27ae60;--txt:#2c3e50;--tx2:#7f8c8d;--bd:#ecf0f1}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh}
-.hd{background:linear-gradient(135deg,#1a1c2e,#1e2a4a,#1a3560);color:#fff;padding:20px 32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-.hd h1{font-size:22px;font-weight:700}
-.hd .meta{font-size:12px;color:rgba(255,255,255,.6);margin-top:4px}
-.tabs{display:flex;background:rgba(255,255,255,.08);border-radius:10px;padding:3px}
-.tb{padding:8px 20px;border-radius:8px;border:none;background:0;color:rgba(255,255,255,.7);cursor:pointer;font-size:13px;font-weight:500;transition:.2s}
-.tb.ac{background:rgba(255,255,255,.2);color:#fff}
-.tb:hover:not(.ac){background:rgba(255,255,255,.1)}
-.ct{padding:20px 28px;max-width:1640px;margin:0 auto}
-.kpi{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:18px}
-.kc{background:var(--card);border-radius:14px;padding:18px 20px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
-.kc .kl{font-size:11px;color:var(--tx2);text-transform:uppercase;letter-spacing:.5px}
-.kc .kv{font-size:28px;font-weight:700;line-height:1.2;margin:6px 0 4px}
-.kc .ks{font-size:11px;color:var(--tx2)}
-.kc .kd{font-size:11px;padding:2px 8px;border-radius:10px;font-weight:600;display:inline-block;margin:4px 0 0}
-.kc .red .kv{color:var(--danger)}.kc .red .kd{background:#fde8e8;color:var(--danger)}
-.kc .orange .kv{color:var(--warn)}.kc .orange .kd{background:#fef3e2;color:#d68910}
-.kc .blue .kv{color:var(--pri)}
-.g2{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-bottom:18px}
-.g22{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
-.gf{margin-bottom:18px}
-.pn{background:var(--card);border-radius:14px;padding:20px 24px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
-.pn h3{font-size:14px;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:8px}
-.pn h3 .dot{width:8px;height:8px;border-radius:50%;background:var(--pri)}
-.ch{width:100%;overflow:hidden}
-.tbl{overflow-x:auto}
-table{width:100%;border-collapse:collapse;font-size:12px}
-th{background:#f8f9fb;padding:9px 12px;text-align:left;font-weight:600;border-bottom:2px solid #e0e4ea;white-space:nowrap;color:var(--tx2);font-size:11px}
-td{padding:9px 12px;border-bottom:1px solid #f0f2f5}
-tr:hover td{background:#f8f9fb}
-tr.st td{background:#f0f3fa;font-weight:600;border-bottom:2px solid #d0d6e4;border-top:1px solid #d0d6e4}
-tr.bt td{background:#eaf0fb;font-weight:700}
-.rb{display:inline-block;padding:2px 8px;border-radius:10px;font-weight:600;font-size:11px}
-.rh{background:#fde8e8;color:var(--danger)}.rm{background:#fef3e2;color:#d68910}.rl{background:#e8f8ef;color:var(--ok)}.rn{color:#ccc}
-.ft{font-size:11px;color:var(--tx2);padding:14px 32px;border-top:1px solid var(--bd);background:var(--card);line-height:1.8}
-.ft strong{color:var(--txt)}
-@media(max-width:1200px){.kpi{grid-template-columns:repeat(3,1fr)}.g2,.g22{grid-template-columns:1fr}}
-@media(max-width:700px){.kpi{grid-template-columns:repeat(2,1fr)}}
-svg text{font-family:inherit}
+:root {
+  --bg: #f5f6fa;
+  --card-bg: #ffffff;
+  --primary: #4e6ef2;
+  --primary-light: #e8ecfd;
+  --danger: #e74c3c;
+  --danger-light: #fde8e8;
+  --warning: #f39c12;
+  --warning-light: #fef3e2;
+  --success: #27ae60;
+  --success-light: #e8f8ef;
+  --text: #2c3e50;
+  --text-secondary: #7f8c8d;
+  --border: #ecf0f1;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+  --shadow: 0 2px 12px rgba(0,0,0,0.06);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.08);
+  --radius: 14px;
+  --radius-sm: 8px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei','Helvetica Neue',sans-serif; background: var(--bg); color: var(--text); min-height:100vh; -webkit-font-smoothing:antialiased; }
+
+/* Header */
+.header { background: linear-gradient(135deg, #1a1c2e 0%, #1e2a4a 40%, #1a3560 100%); color: #fff; padding: 24px 36px; position:relative; overflow:hidden; }
+.header::after { content:''; position:absolute; top:-50%; right:-10%; width:400px; height:400px; background: radial-gradient(circle, rgba(78,110,242,0.15) 0%, transparent 70%); pointer-events:none; }
+.header-inner { position:relative; z-index:1; display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px; }
+.header-left h1 { font-size: 24px; font-weight: 700; letter-spacing: 0.5px; display:flex; align-items:center; gap:10px; }
+.header-left .badge { background: rgba(255,255,255,0.15); padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: 500; }
+.header-left .meta { font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 6px; display:flex; gap:16px; align-items:center; }
+.header-left .meta span { display:flex; align-items:center; gap:4px; }
+.header-right { display:flex; gap:12px; align-items:center; }
+.header-right .view-label { font-size: 13px; color: rgba(255,255,255,0.6); }
+
+/* Tabs */
+.tab-group { display:flex; background: rgba(255,255,255,0.08); border-radius: 10px; padding: 3px; }
+.tab-btn { padding: 8px 22px; border-radius: 8px; border: none; background: transparent; color: rgba(255,255,255,0.7); cursor: pointer; font-size: 14px; font-weight: 500; transition: all 0.25s; white-space:nowrap; }
+.tab-btn.active { background: rgba(255,255,255,0.2); color: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+.tab-btn:hover:not(.active) { background: rgba(255,255,255,0.1); color: #fff; }
+
+/* Container */
+.container { max-width: 1640px; margin: 0 auto; padding: 24px 28px; }
+
+/* KPI Grid */
+.kpi-grid { display:grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 20px; }
+.kpi-card { background: var(--card-bg); border-radius: var(--radius); padding: 20px 22px; box-shadow: var(--shadow-sm); position:relative; overflow:hidden; transition: transform 0.2s, box-shadow 0.2s; cursor:default; }
+.kpi-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.kpi-card .kpi-icon-wrap { width: 44px; height: 44px; border-radius: 12px; display:flex; align-items:center; justify-content:center; font-size: 22px; margin-bottom: 12px; }
+.kpi-card .kpi-icon-wrap.blue { background: var(--primary-light); }
+.kpi-card .kpi-icon-wrap.red { background: var(--danger-light); }
+.kpi-card .kpi-icon-wrap.orange { background: var(--warning-light); }
+.kpi-card .kpi-icon-wrap.green { background: var(--success-light); }
+.kpi-card .kpi-label { font-size: 12px; color: var(--text-secondary); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+.kpi-card .kpi-value { font-size: 30px; font-weight: 700; line-height: 1.1; }
+.kpi-card .kpi-sub { font-size: 12px; color: var(--text-secondary); margin-top: 6px; display:flex; gap:8px; flex-wrap:wrap; }
+.kpi-card .kpi-trend { font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 600; }
+.kpi-card .kpi-trend.up { background: var(--danger-light); color: var(--danger); }
+.kpi-card .kpi-trend.down { background: var(--success-light); color: var(--success); }
+.kpi-card .kpi-trend.neutral { background: #f0f0f0; color: var(--text-secondary); }
+
+/* Panel */
+.panel { background: var(--card-bg); border-radius: var(--radius); padding: 22px 26px; box-shadow: var(--shadow-sm); }
+.panel-header { display:flex; justify-content:space-between; align-items:center; margin-bottom: 16px; }
+.panel-header h3 { font-size: 15px; font-weight: 600; color: var(--text); display:flex; align-items:center; gap:8px; }
+.panel-header h3 .dot { width:8px; height:8px; border-radius:50%; background: var(--primary); }
+.chart-wrap { width:100%; }
+
+/* Grid Layouts */
+.grid-2 { display:grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+.grid-21 { display:grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 20px; }
+.grid-full { margin-bottom: 20px; }
+
+/* Table */
+.table-wrap { overflow-x:auto; }
+table { width:100%; border-collapse:collapse; font-size:13px; }
+thead th { background: #f8f9fb; padding: 10px 14px; text-align:left; font-weight:600; border-bottom: 2px solid #e0e4ea; white-space:nowrap; color: var(--text-secondary); font-size:12px; position:sticky; top:0; }
+tbody td { padding: 10px 14px; border-bottom: 1px solid #f0f2f5; }
+tbody tr:hover { background: #f8f9fb; }
+tbody tr.row-subtotal { background: #f0f3fa; font-weight:600; }
+tbody tr.row-subtotal td { border-bottom: 2px solid #d0d6e4; border-top: 1px solid #d0d6e4; }
+tbody tr.row-bu { background: #eaf0fb; font-weight: 700; }
+tbody tr.row-bu td { border-bottom: 1px solid #c8d6f0; font-size: 13px; }
+.rate-badge { display:inline-block; padding:2px 10px; border-radius:12px; font-weight:600; font-size:12px; }
+.rate-high { background: var(--danger-light); color: var(--danger); }
+.rate-mid { background: var(--warning-light); color: #d68910; }
+.rate-low { background: var(--success-light); color: var(--success); }
+.rate-none { color: #ccc; }
+
+/* Footer */
+.footer { font-size:12px; color: var(--text-secondary); padding: 16px 36px; border-top:1px solid var(--border); background:var(--card-bg); margin-top:8px; line-height:1.8; }
+.footer strong { color: var(--text); }
+
+/* Responsive */
+@media (max-width:1400px) { .kpi-grid { grid-template-columns: repeat(3, 1fr); } .grid-21,.grid-12 { grid-template-columns: 1fr; } }
+@media (max-width:900px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } .grid-2,.grid-3 { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
-<div class="hd"><div><h1>PBU 26骞?鏈堢鑱岀巼鍒嗘瀽</h1><div class="meta">鏁版嵁鍛ㄦ湡锛?026骞?鏈?| 鏁版嵁婧愶細鍚堝苟鑺卞悕鍐?鏈堝簳 | 鏇存柊锛?026-05-25</div></div>
-<div class="tabs"><button class="tb ac" onclick="sw('active')">涓诲姩绂昏亴</button><button class="tb" onclick="sw('full')">鍏ㄩ噺绂昏亴</button></div></div>
-<div class="ct">
-<div class="kpi" id="kpi"></div>
-<div class="g2"><div class="pn"><h3><span class="dot"></span>鍚勯儴闂ㄧ鑱岀巼鎺掑悕</h3><div class="ch" id="c1"></div></div>
-<div class="pn"><h3><span class="dot" style="background:var(--warn)"></span>鍦ㄨ亴浜烘暟鍒嗗竷</h3><div class="ch" id="c2"></div></div></div>
-<div class="g22"><div class="pn"><h3><span class="dot" style="background:var(--ok)"></span>鍚凚U绂昏亴鐜囧姣?/h3><div class="ch" id="c3"></div></div>
-<div class="pn"><h3><span class="dot" style="background:var(--danger)"></span>绂昏亴绫诲瀷鍒嗗竷</h3><div class="ch" id="c4"></div></div></div>
-<div class="g22"><div class="pn"><h3><span class="dot" style="background:#8e44ad"></span>鏈夌鑱岄儴闂?鍦ㄨ亴/绂昏亴鍒嗘瀽</h3><div class="ch" id="c5"></div></div>
-<div class="pn"><h3><span class="dot" style="background:#e67e22"></span>绂昏亴鐜囩儹鍔涘浘</h3><div class="ch" id="c6"></div></div></div>
-<div class="gf"><div class="pn"><h3><span class="dot"></span>鏄庣粏鏁版嵁琛?/h3><div class="tbl" id="tb"></div></div></div>
-<div class="ft"><p><strong>鍙栨暟鍙ｅ緞锛?/strong>鍙?026骞?鏈?0鏃ヤ綋绯诲唴澶栧湪鑱屽憳宸ワ紝鍓旈櫎瀹炰範鐢熴€佸鍖呭憳宸ャ€傜鑱岀巼=绂昏亴浜烘暟/(鏈堝簳鍦ㄨ亴浜烘暟+绂昏亴浜烘暟)</p><p style="color:var(--danger);margin-top:4px">娉細閮ㄥ垎鍛樺伐鏋舵瀯鐩存帴鎸傞潬鍦ㄦ娲蹭竴鍖?涓夊尯锛岄渶鍗曠嫭鍚堣</p></div>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <h1>PBU 26骞?鏈堢鑱岀巼鍒嗘瀽 <span class="badge">HR Analytics</span></h1>
+      <div class="meta"><span>鏁版嵁鍛ㄦ湡锛?026骞?鏈?/span><span>鏁版嵁婧愶細鍚堝苟鑺卞悕鍐?鏈堝簳</span><span>鏇存柊锛?026-05-25</span></div>
+    </div>
+    <div class="header-right">
+      <span class="view-label">鏁版嵁鑼冨洿锛?/span>
+      <div class="tab-group">
+        <button class="tab-btn active" onclick="switchTab('active')">涓诲姩绂昏亴</button>
+        <button class="tab-btn" onclick="switchTab('full')">鍏ㄩ噺绂昏亴</button>
+      </div>
+    </div>
+  </div>
 </div>
+
+<div class="container">
+  <div class="kpi-grid" id="kpiGrid"></div>
+  <div class="grid-21">
+    <div class="panel"><div class="panel-header"><h3><span class="dot"></span>鍚勯儴闂ㄧ鑱岀巼鎺掑悕</h3></div><div class="chart-wrap" id="chartRateBar" style="height:500px;"></div></div>
+    <div class="panel"><div class="panel-header"><h3><span class="dot" style="background:var(--warning)"></span>鍦ㄨ亴浜烘暟鍒嗗竷</h3></div><div class="chart-wrap" id="chartComposition" style="height:460px;"></div></div>
+  </div>
+  <div class="grid-2">
+    <div class="panel"><div class="panel-header"><h3><span class="dot" style="background:var(--success)"></span>鍚凚U绂昏亴鐜囧姣?/h3></div><div class="chart-wrap" id="chartBuCompare" style="height:400px;"></div></div>
+    <div class="panel"><div class="panel-header"><h3><span class="dot" style="background:var(--danger)"></span>绂昏亴浜哄憳绫诲瀷鍒嗗竷</h3></div><div class="chart-wrap" id="chartResignType" style="height:400px;"></div></div>
+  </div>
+  <div class="grid-2">
+    <div class="panel"><div class="panel-header"><h3><span class="dot" style="background:#8e44ad"></span>鏈夌鑱岄儴闂?鍦ㄨ亴/绂昏亴鍒嗘瀽</h3></div><div class="chart-wrap" id="chartStaffResign" style="height:420px;"></div></div>
+    <div class="panel"><div class="panel-header"><h3><span class="dot" style="background:#e67e22"></span>绂昏亴鐜囩儹鍔涘垎鏋?/h3></div><div class="chart-wrap" id="chartHeatmap" style="height:420px;"></div></div>
+  </div>
+  <div class="grid-full">
+    <div class="panel"><div class="panel-header"><h3><span class="dot"></span>鏄庣粏鏁版嵁琛?/h3></div><div class="table-wrap" id="dataTable"></div></div>
+  </div>
+  <div class="footer">
+    <p><strong>鍙栨暟鍙ｅ緞锛?/strong></p>
+    <p>1. 鍙栨暟鑼冨洿锛氬彇2026骞?鏈?0鏃ヤ綋绯诲唴澶栧湪鑱屽憳宸ワ紝鍓旈櫎瀹炰範鐢熴€佸鍖呭憳宸?/p>
+    <p>2. 绂昏亴鐜?= 绂昏亴浜烘暟 /锛堟湀搴曞湪鑱屼汉鏁?+ 绂昏亴浜烘暟锛?/p>
+    <p>3. 123鏍煎瓙銆佺牬鏍兼檵鍗囥€佽瘎浼樺彇25骞存暟鎹?/p>
+    <p>4. 涓诲姩绂昏亴鐪嬫澘鍙彇涓诲姩绂昏亴鐨勭鑱屾暟鎹紱鍏ㄩ噺鐪嬫澘鍖呭惈鎵€鏈夌鑱岀被鍨?/p>
+    <p style="margin-top:4px;color:var(--danger)">娉細閮ㄥ垎鍛樺伐鏋舵瀯鐩存帴鎸傞潬鍦ㄦ娲蹭竴鍖?涓夊尯锛岄渶鍗曠嫭鍚堣</p>
+  </div>
+</div>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
 <script>
+// Fallback CDN if first fails
+if(typeof echarts==='undefined'){
+  document.write('<script src="https://registry.npmmirror.com/echarts/5.5.0/files/dist/echarts.min.js"><\/script>');
+}
+</script>
+<script>
+// If still no echarts, show error
+window.addEventListener('DOMContentLoaded',function(){
+  if(typeof echarts==='undefined'){
+    document.body.innerHTML='<div style="text-align:center;padding:60px;font-family:sans-serif"><h2>鍥捐〃搴撳姞杞藉け璐?/h2><p style="color:#666;margin:10px 0">璇峰皾璇曞埛鏂伴〉闈紝鎴栦笅杞界绾跨増鏂囦欢</p><p style="color:#999;font-size:13px">濡傛寔缁け璐ワ紝璇蜂娇鐢ㄩ檮甯︾殑鑷寘鍚増鏈?/p></div>';
+    return;
+  }
+  init();
+});
+
 // ========== DATA ==========
-const A={t:'涓诲姩绂昏亴',d:[
-{bu:'PBU鍙ｅ哺浜嬩笟閮?,d3:'娆ф床涓€鍖?,d4:'涓归害鍖?,w:5,g:3,t:8,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
-{bu:'',d3:'',d4:'鑻卞浗鍖?,w:15,g:13,t:28,rw:1,rg:0,rt:1,rwR:6.25,rgR:null,rtR:3.45,s:false,ib:false},
-{bu:'',d3:'',d4:'鑽峰叞鍖?,w:9,g:9,t:18,rw:1,rg:0,rt:1,rwR:10,rgR:null,rtR:5.26,s:false,ib:false},
-{bu:'',d3:'',d4:'娆ф床涓€鍖?灏忚',w:30,g:25,t:55,rw:2,rg:0,rt:2,rwR:6.25,rgR:null,rtR:3.51,s:true,ib:false},
-{bu:'',d3:'娆ф床浜屽尯',d4:'姣斿埄鏃跺尯',w:4,g:10,t:14,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
-{bu:'',d3:'',d4:'娉曞浗鍖?,w:38,g:42,t:80,rw:0,rg:1,rt:1,rwR:null,rgR:2.33,rtR:1.23,s:false,ib:false},
-{bu:'',d3:'',d4:'娆ф床浜屽尯 灏忚',w:42,g:52,t:94,rw:0,rg:1,rt:1,rwR:null,rgR:1.89,rtR:1.05,s:true,ib:false},
-{bu:'',d3:'娆ф床涓夊尯',d4:'瑗跨彮鐗欏尯',w:5,g:3,t:8,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
-{bu:'',d3:'',d4:'鎰忓ぇ鍒╁尯',w:8,g:7,t:15,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
-{bu:'',d3:'',d4:'鍖堢墮鍒╁尯',w:4,g:1,t:5,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
-{bu:'',d3:'',d4:'娆ф床涓夊尯 灏忚',w:18,g:11,t:29,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:true,ib:false},
-{bu:'',d3:'婢虫床鍖?,d4:'',w:3,g:1,t:4,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
-{bu:'',d3:'鏃ユ湰鍖?,d4:'',w:5,g:1,t:6,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
-{bu:'',d3:'鍖楃編鍖?,d4:'',w:5,g:10,t:15,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
-{bu:'',d3:'缁忚惀绠＄悊閮?,d4:'',w:6,g:0,t:6,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
-{bu:'',d3:'閿€鍞鏈嶉儴',d4:'',w:9,g:0,t:9,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
-{bu:'',d3:'浜や粯杩愯惀閮?,d4:'',w:14,g:0,t:14,rw:1,rg:0,rt:1,rwR:6.67,rgR:null,rtR:6.67,s:false,ib:false},
-{bu:'',d3:'PBU鎶€鏈儴',d4:'',w:44,g:0,t:44,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
-{bu:'',d3:'鍥涙捣鎹疯繍椤圭洰閮?,d4:'',w:31,g:2,t:33,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
-{bu:'',d3:'PBU鍙ｅ哺浜嬩笟閮?,d4:'鍚堣',w:207,g:102,t:309,rw:3,rg:1,rt:4,rwR:1.43,rgR:0.97,rtR:1.28,s:true,ib:true},
-{bu:'FES璐㈢粡鏉＄嚎',d3:'PBU璐㈠姟閮?,d4:'',w:40,g:0,t:40,rw:3,rg:0,rt:3,rwR:6.98,rgR:null,rtR:6.98,s:false,ib:false},
-{bu:'',d3:'FES璐㈢粡鏉＄嚎',d4:'鍚堣',w:40,g:0,t:40,rw:3,rg:0,rt:3,rwR:6.98,rgR:null,rtR:6.98,s:true,ib:true},
-{bu:'HRAS浜哄姏缁煎悎鏉＄嚎',d3:'PBU HRBP Dept.',d4:'',w:23,g:0,t:23,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
-{bu:'',d3:'HRAS浜哄姏缁煎悎鏉＄嚎',d4:'鍚堣',w:23,g:0,t:23,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:true,ib:true}],
-s:{ts:372,tr:7,or:1.85,wr:2.17,gr:0.97}};
+const activeData={title:'涓诲姩绂昏亴',depts:[
+{bu:'PBU鍙ｅ哺浜嬩笟閮?,d3:'娆ф床涓€鍖?,d4:'涓归害鍖?,w:5,g:3,t:8,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'',d4:'鑻卞浗鍖?,w:15,g:13,t:28,rw:1,rg:0,rt:1,rwR:6.25,rgR:null,rtR:3.45,sub:false,isBu:false},
+{bu:'',d3:'',d4:'鑽峰叞鍖?,w:9,g:9,t:18,rw:1,rg:0,rt:1,rwR:10.0,rgR:null,rtR:5.26,sub:false,isBu:false},
+{bu:'',d3:'',d4:'娆ф床涓€鍖?灏忚',w:30,g:25,t:55,rw:2,rg:0,rt:2,rwR:6.25,rgR:null,rtR:3.51,sub:true,isBu:false},
+{bu:'',d3:'娆ф床浜屽尯',d4:'姣斿埄鏃跺尯',w:4,g:10,t:14,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'',d4:'娉曞浗鍖?,w:38,g:42,t:80,rw:0,rg:1,rt:1,rwR:null,rgR:2.33,rtR:1.23,sub:false,isBu:false},
+{bu:'',d3:'',d4:'娆ф床浜屽尯 灏忚',w:42,g:52,t:94,rw:0,rg:1,rt:1,rwR:null,rgR:1.89,rtR:1.05,sub:true,isBu:false},
+{bu:'',d3:'娆ф床涓夊尯',d4:'瑗跨彮鐗欏尯',w:5,g:3,t:8,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'',d4:'鎰忓ぇ鍒╁尯',w:8,g:7,t:15,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'',d4:'鍖堢墮鍒╁尯',w:4,g:1,t:5,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'',d4:'娆ф床涓夊尯 灏忚',w:18,g:11,t:29,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:true,isBu:false},
+{bu:'',d3:'婢虫床鍖?,d4:'',w:3,g:1,t:4,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'鏃ユ湰鍖?,d4:'',w:5,g:1,t:6,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'鍖楃編鍖?,d4:'',w:5,g:10,t:15,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'缁忚惀绠＄悊閮?,d4:'',w:6,g:0,t:6,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'閿€鍞鏈嶉儴',d4:'',w:9,g:0,t:9,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'浜や粯杩愯惀閮?,d4:'',w:14,g:0,t:14,rw:1,rg:0,rt:1,rwR:6.67,rgR:null,rtR:6.67,sub:false,isBu:false},
+{bu:'',d3:'PBU鎶€鏈儴',d4:'',w:44,g:0,t:44,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'鍥涙捣鎹疯繍椤圭洰閮?,d4:'',w:31,g:2,t:33,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'PBU鍙ｅ哺浜嬩笟閮?,d4:'鍚堣',w:207,g:102,t:309,rw:3,rg:1,rt:4,rwR:1.43,rgR:0.97,rtR:1.28,sub:true,isBu:true},
+{bu:'FES璐㈢粡鏉＄嚎',d3:'PBU璐㈠姟閮?,d4:'',w:40,g:0,t:40,rw:3,rg:0,rt:3,rwR:6.98,rgR:null,rtR:6.98,sub:false,isBu:false},
+{bu:'',d3:'FES璐㈢粡鏉＄嚎',d4:'鍚堣',w:40,g:0,t:40,rw:3,rg:0,rt:3,rwR:6.98,rgR:null,rtR:6.98,sub:true,isBu:true},
+{bu:'HRAS浜哄姏缁煎悎鏉＄嚎',d3:'PBU HRBP Dept.',d4:'',w:23,g:0,t:23,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'HRAS浜哄姏缁煎悎鏉＄嚎',d4:'鍚堣',w:23,g:0,t:23,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:true,isBu:true},
+],sum:{ts:372,tr:7,or:1.85,wr:2.17,gr:0.97}};
 
-const F={t:'鍏ㄩ噺绂昏亴',d:[
-{bu:'PBU鍙ｅ哺浜嬩笟閮?,d3:'娆ф床涓€鍖?,d4:'涓归害鍖?,w:5,g:3,t:8,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
-{bu:'',d3:'',d4:'鑻卞浗鍖?,w:15,g:13,t:28,rw:1,rg:1,rt:2,rwR:6.25,rgR:7.14,rtR:6.67,s:false,ib:false},
-{bu:'',d3:'',d4:'鑽峰叞鍖?,w:9,g:9,t:18,rw:1,rg:1,rt:2,rwR:10,rgR:10,rtR:10,s:false,ib:false},
-{bu:'',d3:'',d4:'娆ф床涓€鍖?灏忚',w:30,g:25,t:55,rw:2,rg:2,rt:4,rwR:6.25,rgR:7.41,rtR:6.78,s:true,ib:false},
-{bu:'',d3:'娆ф床浜屽尯',d4:'姣斿埄鏃跺尯',w:4,g:10,t:14,rw:1,rg:1,rt:2,rwR:20,rgR:9.09,rtR:12.5,s:false,ib:false},
-{bu:'',d3:'',d4:'娉曞浗鍖?,w:38,g:42,t:80,rw:1,rg:1,rt:2,rwR:2.56,rgR:2.33,rtR:2.44,s:false,ib:false},
-{bu:'',d3:'',d4:'娆ф床浜屽尯 灏忚',w:42,g:52,t:94,rw:2,rg:2,rt:4,rwR:4.55,rgR:3.7,rtR:4.08,s:true,ib:false},
-{bu:'',d3:'娆ф床涓夊尯',d4:'瑗跨彮鐗欏尯',w:5,g:3,t:8,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
-{bu:'',d3:'',d4:'鎰忓ぇ鍒╁尯',w:8,g:7,t:15,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
-{bu:'',d3:'',d4:'鍖堢墮鍒╁尯',w:4,g:1,t:5,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
-{bu:'',d3:'',d4:'娆ф床涓夊尯 灏忚',w:18,g:11,t:29,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:true,ib:false},
-{bu:'',d3:'婢虫床鍖?,d4:'',w:3,g:1,t:4,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
-{bu:'',d3:'鏃ユ湰鍖?,d4:'',w:5,g:1,t:6,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
-{bu:'',d3:'鍖楃編鍖?,d4:'',w:5,g:10,t:15,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
-{bu:'',d3:'缁忚惀绠＄悊閮?,d4:'',w:6,g:0,t:6,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
-{bu:'',d3:'閿€鍞鏈嶉儴',d4:'',w:9,g:0,t:9,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
-{bu:'',d3:'浜や粯杩愯惀閮?,d4:'',w:14,g:0,t:14,rw:1,rg:0,rt:1,rwR:6.67,rgR:null,rtR:6.67,s:false,ib:false},
-{bu:'',d3:'PBU鎶€鏈儴',d4:'',w:44,g:0,t:44,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
-{bu:'',d3:'鍥涙捣鎹疯繍椤圭洰閮?,d4:'',w:31,g:2,t:33,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
-{bu:'',d3:'PBU鍙ｅ哺浜嬩笟閮?,d4:'鍚堣',w:207,g:102,t:309,rw:5,rg:4,rt:9,rwR:2.36,rgR:3.77,rtR:2.83,s:true,ib:true},
-{bu:'FES璐㈢粡鏉＄嚎',d3:'PBU璐㈠姟閮?,d4:'',w:40,g:0,t:40,rw:4,rg:0,rt:4,rwR:9.09,rgR:null,rtR:9.09,s:false,ib:false},
-{bu:'',d3:'FES璐㈢粡鏉＄嚎',d4:'鍚堣',w:40,g:0,t:40,rw:4,rg:0,rt:4,rwR:9.09,rgR:null,rtR:9.09,s:true,ib:true},
-{bu:'HRAS浜哄姏缁煎悎鏉＄嚎',d3:'PBU HRBP Dept.',d4:'',w:23,g:0,t:23,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:false,ib:false},
-{bu:'',d3:'HRAS浜哄姏缁煎悎鏉＄嚎',d4:'鍚堣',w:23,g:0,t:23,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,s:true,ib:true}],
-s:{ts:372,tr:13,or:3.38,wr:3.23,gr:3.77}};
+const fullData={title:'鍏ㄩ噺绂昏亴',depts:[
+{bu:'PBU鍙ｅ哺浜嬩笟閮?,d3:'娆ф床涓€鍖?,d4:'涓归害鍖?,w:5,g:3,t:8,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'',d4:'鑻卞浗鍖?,w:15,g:13,t:28,rw:1,rg:1,rt:2,rwR:6.25,rgR:7.14,rtR:6.67,sub:false,isBu:false},
+{bu:'',d3:'',d4:'鑽峰叞鍖?,w:9,g:9,t:18,rw:1,rg:1,rt:2,rwR:10.0,rgR:10.0,rtR:10.0,sub:false,isBu:false},
+{bu:'',d3:'',d4:'娆ф床涓€鍖?灏忚',w:30,g:25,t:55,rw:2,rg:2,rt:4,rwR:6.25,rgR:7.41,rtR:6.78,sub:true,isBu:false},
+{bu:'',d3:'娆ф床浜屽尯',d4:'姣斿埄鏃跺尯',w:4,g:10,t:14,rw:1,rg:1,rt:2,rwR:20.0,rgR:9.09,rtR:12.5,sub:false,isBu:false},
+{bu:'',d3:'',d4:'娉曞浗鍖?,w:38,g:42,t:80,rw:1,rg:1,rt:2,rwR:2.56,rgR:2.33,rtR:2.44,sub:false,isBu:false},
+{bu:'',d3:'',d4:'娆ф床浜屽尯 灏忚',w:42,g:52,t:94,rw:2,rg:2,rt:4,rwR:4.55,rgR:3.70,rtR:4.08,sub:true,isBu:false},
+{bu:'',d3:'娆ф床涓夊尯',d4:'瑗跨彮鐗欏尯',w:5,g:3,t:8,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'',d4:'鎰忓ぇ鍒╁尯',w:8,g:7,t:15,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'',d4:'鍖堢墮鍒╁尯',w:4,g:1,t:5,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'',d4:'娆ф床涓夊尯 灏忚',w:18,g:11,t:29,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:true,isBu:false},
+{bu:'',d3:'婢虫床鍖?,d4:'',w:3,g:1,t:4,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'鏃ユ湰鍖?,d4:'',w:5,g:1,t:6,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'鍖楃編鍖?,d4:'',w:5,g:10,t:15,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'缁忚惀绠＄悊閮?,d4:'',w:6,g:0,t:6,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'閿€鍞鏈嶉儴',d4:'',w:9,g:0,t:9,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'浜や粯杩愯惀閮?,d4:'',w:14,g:0,t:14,rw:1,rg:0,rt:1,rwR:6.67,rgR:null,rtR:6.67,sub:false,isBu:false},
+{bu:'',d3:'PBU鎶€鏈儴',d4:'',w:44,g:0,t:44,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'鍥涙捣鎹疯繍椤圭洰閮?,d4:'',w:31,g:2,t:33,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'PBU鍙ｅ哺浜嬩笟閮?,d4:'鍚堣',w:207,g:102,t:309,rw:5,rg:4,rt:9,rwR:2.36,rgR:3.77,rtR:2.83,sub:true,isBu:true},
+{bu:'FES璐㈢粡鏉＄嚎',d3:'PBU璐㈠姟閮?,d4:'',w:40,g:0,t:40,rw:4,rg:0,rt:4,rwR:9.09,rgR:null,rtR:9.09,sub:false,isBu:false},
+{bu:'',d3:'FES璐㈢粡鏉＄嚎',d4:'鍚堣',w:40,g:0,t:40,rw:4,rg:0,rt:4,rwR:9.09,rgR:null,rtR:9.09,sub:true,isBu:true},
+{bu:'HRAS浜哄姏缁煎悎鏉＄嚎',d3:'PBU HRBP Dept.',d4:'',w:23,g:0,t:23,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:false,isBu:false},
+{bu:'',d3:'HRAS浜哄姏缁煎悎鏉＄嚎',d4:'鍚堣',w:23,g:0,t:23,rw:0,rg:0,rt:0,rwR:null,rgR:null,rtR:null,sub:true,isBu:true},
+],sum:{ts:372,tr:13,or:3.38,wr:3.23,gr:3.77}};
 
-let T='active';
-function D(){return T==='active'?A:F;}
+function init(){
+let tab='active';
+const charts={};
+function D(){return tab==='active'?activeData:fullData;}
 function fr(v){return v===null||v===undefined?'-':v.toFixed(2)+'%';}
-function rc(v){return v===null||v===undefined?'rn':v>=10?'rh':v>=5?'rm':'rl';}
-function lf(d){return d.d.filter(x=>!x.s&&x.t>0);}
-function bu(d){return d.d.filter(x=>x.ib);}
+function rc(v){return v===null||v===undefined?'rate-none':v>=10?'rate-high':v>=5?'rate-mid':'rate-low';}
+function leafs(d){return d.depts.filter(x=>!x.sub&&x.t>0);}
+function bus(d){return d.depts.filter(x=>x.isBu);}
 
-// ========== SVG HELPERS ==========
-function ns(tag){return document.createElementNS('http://www.w3.org/2000/svg',tag);}
-function setAttr(el,attrs){for(let k in attrs)el.setAttribute(k,attrs[k]);return el;}
-
-function barChart(id,labels,values,opts={}){
-  const c=document.getElementById(id);c.innerHTML='';
-  const W=opts.w||c.clientWidth||600,H=opts.h||400;
-  const ml=opts.ml||10,mr=opts.mr||60,mt=opts.mt||20,mb=opts.mb||20;
-  const cw=W-ml-mr,ch=H-mt-mb,n=labels.length;
-  const bw=Math.min(28,cw/n*0.6),gap=cw/n;
-  const maxV=Math.max(...values,1),scale=ch/maxV;
-  const svg=setAttr(ns('svg'),{viewBox:`0 0 ${W} ${H}`,width:W,height:H,style:'display:block'});
-  
-  // Y axis
-  for(let i=0;i<=5;i++){const y=ch-(i*ch/5)+mt;svg.appendChild(setAttr(ns('line'),{x1:ml,x2:ml+cw,y1:y,y2:y,stroke:'#eee','stroke-dasharray':'4,4'}));
-    svg.appendChild(setAttr(ns('text'),{x:ml-6,y:y+4,'text-anchor':'end',fill:'#999','font-size':'10'}).appendChild(document.createTextNode((maxV*i/5).toFixed(1)+'%'))&&null);}
-  
-  // Bars
-  values.forEach((v,i)=>{
-    const bh=v*scale,x=ml+(i+0.5)*gap-bw/2,y=ch-bh+mt;
-    let color=opts.colors?opts.colors[i]:'#4e6ef2';
-    if(!opts.colors)color=v>=10?'#e74c3c':v>=5?'#f39c12':v>=3?'#4e6ef2':'#27ae60';
-    svg.appendChild(setAttr(ns('rect'),{x,y,width:bw,height:bh,fill:color,rx:4}));
-    svg.appendChild(setAttr(ns('text'),{x:x+bw/2,y:y-4,'text-anchor':'middle',fill:'#333','font-size':'10','font-weight':'bold'}).appendChild(document.createTextNode(fr(v)))&&null);
-    svg.appendChild(setAttr(ns('text'),{x:x+bw/2,y:ch+mt+14,'text-anchor':opts.rotate?'end':'middle',fill:'#666','font-size':'9',transform:opts.rotate?`rotate(-30,${x+bw/2},${ch+mt+14})`:''}).appendChild(document.createTextNode(labels[i]))&&null);
-  });
-  c.appendChild(svg);
+function renderKPI(){
+  const d=D(),s=d.sum,bw=bus(d).reduce((a,b)=>a+b.w,0),bg_1=bus(d).reduce((a,b)=>a+b.g,0);
+  const rw=bus(d).reduce((a,b)=>a+b.rw,0),rg=bus(d).reduce((a,b)=>a+b.rg,0);
+  const hr=leafs(d).filter(x=>x.rtR!==null&&x.rtR>=5).length;
+  const ar=leafs(d).filter(x=>x.rtR!==null&&x.rtR>=3).length;
+  document.getElementById('kpiGrid').innerHTML=
+    '<div class="kpi-card"><div class="kpi-icon-wrap blue">&#x1f465;</div><div class="kpi-label">PBU鍦ㄨ亴鎬讳汉鏁?/div><div class="kpi-value">'+s.ts+'</div><div class="kpi-sub"><span>鐧介 '+bw+'</span><span>鐏伴 '+bg_1+'</span></div></div>'+
+    '<div class="kpi-card"><div class="kpi-icon-wrap '+(s.tr>5?'red':'orange')+'">&#x1f6aa;</div><div class="kpi-label">'+d.title+'浜烘暟</div><div class="kpi-value">'+s.tr+'</div><div class="kpi-sub"><span>鐧介 '+rw+'</span><span>鐏伴 '+rg+'</span></div></div>'+
+    '<div class="kpi-card"><div class="kpi-icon-wrap '+(s.or>=5?'red':s.or>=3?'orange':'blue')+'">&#x1f4ca;</div><div class="kpi-label">'+d.title+'鐜?/div><div class="kpi-value">'+fr(s.or)+'</div><div class="kpi-sub"><span>鐧介 '+fr(s.wr)+'</span><span>鐏伴 '+fr(s.gr)+'</span></div></div>'+
+    '<div class="kpi-card"><div class="kpi-icon-wrap '+(hr>0?'red':'orange')+'">&#x26a0;</div><div class="kpi-label">楂橀闄╅儴闂?(鈮?%)</div><div class="kpi-value">'+hr+'</div><div class="kpi-sub">闇€閲嶇偣鍏虫敞</div></div>'+
+    '<div class="kpi-card"><div class="kpi-icon-wrap blue">&#x1f4cb;</div><div class="kpi-label">闇€鍏虫敞閮ㄩ棬 (鈮?%)</div><div class="kpi-value">'+ar+'</div><div class="kpi-sub">鍏?'+leafs(d).length+' 涓儴闂?/div></div>';
 }
 
-function donutChart(id,labels,values,centerText){
-  const c=document.getElementById(id);c.innerHTML='';
-  const W=c.clientWidth||400,H=opts.h||380,R=Math.min(W,H)/2-40,r=R*0.55;
-  const svg=setAttr(ns('svg'),{viewBox:`0 0 ${W} ${H}`,width:W,height:H,style:'display:block'});
-  const cx=W/2,cy=H/2-10,total=values.reduce((a,b)=>a+b,0);
-  const colors=['#4e6ef2','#27ae60','#f39c12','#e74c3c','#8e44ad','#1abc9c'];
-  let angle=-Math.PI/2;
-  values.forEach((v,i)=>{
-    const slice=v/total*Math.PI*2;
-    const x1=cx+R*Math.cos(angle),y1=cy+R*Math.sin(angle);
-    const x2=cx+R*Math.cos(angle+slice),y2=cy+R*Math.sin(angle+slice);
-    const large=slice>Math.PI?1:0;
-    const x1i=cx+r*Math.cos(angle),y1i=cy+r*Math.sin(angle);
-    const x2i=cx+r*Math.cos(angle+slice),y2i=cy+r*Math.sin(angle+slice);
-    const d=`M${x1i} ${y1i} L${x1} ${y1} A${R} ${R} 0 ${large} 1 ${x2} ${y2} L${x2i} ${y2i} A${r} ${r} 0 ${large} 0 ${x1i} ${y1i} Z`;
-    svg.appendChild(setAttr(ns('path'),{d,fill:colors[i%colors.length],stroke:'#fff','stroke-width':2}));
-    const ma=angle+slice/2,mlx=cx+(R+25)*Math.cos(ma),mly=cy+(R+25)*Math.sin(ma);
-    svg.appendChild(setAttr(ns('text'),{x:mlx,y:mly,fill:'#555','font-size':'10','text-anchor':mlx>cx?'start':'end'}).appendChild(document.createTextNode(labels[i]+' '+(v/total*100).toFixed(0)+'%'))&&null);
-    angle+=slice;
+function renderRateBar(){
+  const d=D(),lfs=leafs(d).filter(x=>x.rtR!==null).sort((a,b)=>(b.rtR||0)-(a.rtR||0));
+  const names=lfs.map(x=>{let n=x.d4||x.d3;if(x.bu)n=x.bu+' > '+n;return n;});
+  const rates=lfs.map(x=>x.rtR);
+  const c=echarts.init(document.getElementById('chartRateBar'));charts.rateBar=c;
+  c.setOption({tooltip:{trigger:'axis',axisPointer:{type:'shadow'},formatter:p=>'<b>'+p[0].name+'</b><br/>绂昏亴鐜? <b style="font-size:16px">'+fr(p[0].value)+'</b>'},
+    grid:{left:10,right:70,top:20,bottom:20,containLabel:true},
+    xAxis:{type:'value',axisLabel:{formatter:'{value}%'},splitLine:{lineStyle:{type:'dashed',color:'#eee'}}},
+    yAxis:{type:'category',data:names.reverse(),axisLabel:{fontSize:11,width:140,overflow:'truncate'},inverse:true},
+    series:[{type:'bar',data:rates.reverse().map(v=>({value:v,itemStyle:{color:v>=10?'#e74c3c':v>=5?'#f39c12':v>=3?'#4e6ef2':'#27ae60',borderRadius:[0,6,6,0]}})),barWidth:22,
+      label:{show:true,position:'right',fontSize:11,fontWeight:'bold',formatter:p=>fr(p.value)},
+      markLine:{silent:true,symbol:'none',data:[{xAxis:d.sum.or,label:{formatter:'鏁翠綋 '+fr(d.sum.or),position:'start',fontSize:11},lineStyle:{color:'#e74c3c',type:'dashed',width:2}}]}
+    }]
   });
-  svg.appendChild(setAttr(ns('text'),{x:cx,y:cy-4,'text-anchor':'middle',fill:'#2c3e50','font-size':'13','font-weight':'bold'}).appendChild(document.createTextNode(centerText))&&null);
-  svg.appendChild(setAttr(ns('text'),{x:cx,y:cy+14,'text-anchor':'middle',fill:'#2c3e50','font-size':'15','font-weight':'bold'}).appendChild(document.createTextNode(total))&&null);
-  c.appendChild(svg);
 }
 
-function groupedBar(id,labels,series,opts={}){
-  const c=document.getElementById(id);c.innerHTML='';
-  const W=opts.w||c.clientWidth||500,H=opts.h||360;
-  const ml=opts.ml||10,mr=opts.mr||20,mt=opts.mt||20,mb=opts.mb||55;
-  const cw=W-ml-mr,ch=H-mt-mb,n=labels.length;
-  const gap=cw/n,serN=series.length,bw=Math.min(20,gap/(serN+1));
-  const allV=series.flat();const maxV=Math.max(...allV,1);const scale=ch/maxV;
-  const svg=setAttr(ns('svg'),{viewBox:`0 0 ${W} ${H}`,width:W,height:H,style:'display:block'});
-  for(let i=0;i<=4;i++){const y=ch-(i*ch/4)+mt;svg.appendChild(setAttr(ns('line'),{x1:ml,x2:ml+cw,y1:y,y2:y,stroke:'#eee','stroke-dasharray':'4,4'}));
-    svg.appendChild(setAttr(ns('text'),{x:ml-6,y:y+4,'text-anchor':'end',fill:'#999','font-size':'10'}).appendChild(document.createTextNode((maxV*i/4).toFixed(1)+'%'))&&null);}
-  series.forEach((ser,si)=>{
-    const col=si===0?'#4e6ef2':si===1?'#f39c12':'#e74c3c';
-    ser.forEach((v,i)=>{
-      const bh=v*scale,x=ml+(i+0.5)*gap-(serN*bw)/2+si*bw,y=ch-bh+mt;
-      svg.appendChild(setAttr(ns('rect'),{x,y,width:bw-2,height:bh,fill:col,rx:3}));
-      svg.appendChild(setAttr(ns('text'),{x:x+bw/2-1,y:y-3,'text-anchor':'middle',fill:'#333','font-size':'8',fontWeight:si===2?'bold':''}).appendChild(document.createTextNode(fr(v)))&&null);
-    });
+function renderComposition(){
+  const d=D(),bs=bus(d);
+  const n=bs.map(x=>(x.bu||x.d3).replace('鍚堣','').trim());
+  const st=bs.map(x=>x.t);
+  const c=echarts.init(document.getElementById('chartComposition'));charts.composition=c;
+  c.setOption({tooltip:{trigger:'item',formatter:'{b}: {c} 浜?({d}%)'},legend:{bottom:0,textStyle:{fontSize:11}},
+    series:[{name:'鍦ㄨ亴浜烘暟',type:'pie',radius:['50%','75%'],center:['50%','47%'],avoidLabelOverlap:false,
+      label:{show:true,formatter:'{b}\n{d}%',fontSize:11},
+      data:n.map((nm,i)=>({name:nm,value:st[i],itemStyle:{borderRadius:4,borderColor:'#fff',borderWidth:2}})),
+      emphasis:{label:{fontSize:16,fontWeight:'bold'}}
+    }],
+    graphic:[{type:'text',left:'center',top:'42%',style:{text:'鍦ㄨ亴\n'+d.sum.ts,textAlign:'center',fontSize:16,fontWeight:'bold',fill:'#2c3e50'}}]
   });
-  labels.forEach((l,i)=>{
-    svg.appendChild(setAttr(ns('text'),{x:ml+(i+0.5)*gap,y:ch+mt+14,'text-anchor':opts.rotate?'end':'middle',fill:'#666','font-size':'9',transform:opts.rotate?`rotate(-20,${ml+(i+0.5)*gap},${ch+mt+14})`:''}).appendChild(document.createTextNode(l))&&null);
-  });
-  // legend
-  const leg=['鐧介绂昏亴鐜?,'鐏伴绂昏亴鐜?,'鎬荤鑱岀巼'],lcol=['#4e6ef2','#f39c12','#e74c3c'];
-  leg.forEach((t,i)=>{
-    const lx=ml+10+i*80,ly=ch+mt+35;
-    svg.appendChild(setAttr(ns('rect'),{x:lx,y:ly-8,width:10,height:10,fill:lcol[i],rx:2}));
-    svg.appendChild(setAttr(ns('text'),{x:lx+14,y:ly,fill:'#555','font-size':'9'}).appendChild(document.createTextNode(t))&&null);
-  });
-  c.appendChild(svg);
 }
 
-function heatmapChart(id,rows,cols,data,opts={}){
-  const c=document.getElementById(id);c.innerHTML='';
-  const W=c.clientWidth||500,H=opts.h||380;
-  const ml=90,mr=10,mt=10,mb=60;
-  const cw=W-ml-mr,ch=H-mt-mb;
-  const cw1=cw/cols.length,ch1=Math.min(ch/rows.length,50);
-  const svg=setAttr(ns('svg'),{viewBox:`0 0 ${W} ${H}`,width:W,height:H,style:'display:block'});
-  const maxV=Math.max(...data.map(d=>d[2]),5);
-  const heatColor=v=>{const r=v/maxV;return r>0.75?'#e74c3c':r>0.5?'#f39c12':r>0.25?'#fef9e7':'#e8f8ef';};
-  data.forEach(([ri,ci,v])=>{
-    const x=ml+ci*cw1,y=mt+ri*ch1;
-    svg.appendChild(setAttr(ns('rect'),{x,y,width:cw1-2,height:ch1-2,fill:v===0?'#f5f5f5':heatColor(v),rx:3}));
-    svg.appendChild(setAttr(ns('text'),{x:x+cw1/2,y:y+ch1/2+4,'text-anchor':'middle',fill:v===0?'#ccc':'#fff','font-size':'10','font-weight':'bold'}).appendChild(document.createTextNode(fr(v)))&&null);
+function renderBuCompare(){
+  const d=D(),bs=bus(d).filter(x=>x.t>0);
+  const names=bs.map(x=>{let n=x.d3;if(x.bu)n=x.bu;return n.replace('鍚堣','').trim();});
+  const wR=bs.map(x=>x.rwR||0),gR=bs.map(x=>x.rgR||0),tR=bs.map(x=>x.rtR||0);
+  const c=echarts.init(document.getElementById('chartBuCompare'));charts.buCompare=c;
+  c.setOption({tooltip:{trigger:'axis',formatter:function(ps){let r=ps[0].name+'<br/>';ps.forEach(p=>r+=p.marker+p.seriesName+': <b>'+fr(p.value)+'</b><br/>');return r;}},
+    legend:{data:['鐧介绂昏亴鐜?,'鐏伴绂昏亴鐜?,'鎬荤鑱岀巼'],bottom:0,textStyle:{fontSize:11}},
+    grid:{left:10,right:20,top:20,bottom:55,containLabel:true},
+    xAxis:{type:'category',data:names,axisLabel:{fontSize:11,rotate:15}},
+    yAxis:{type:'value',axisLabel:{formatter:'{value}%'},name:'%'},
+    series:[
+      {name:'鐧介绂昏亴鐜?,type:'bar',data:wR,itemStyle:{color:'#4e6ef2',borderRadius:[6,6,0,0]},barWidth:'30%',label:{show:true,position:'top',fontSize:10,formatter:p=>fr(p.value)}},
+      {name:'鐏伴绂昏亴鐜?,type:'bar',data:gR,itemStyle:{color:'#f39c12',borderRadius:[6,6,0,0]},barWidth:'30%',label:{show:true,position:'top',fontSize:10,formatter:p=>fr(p.value)}},
+      {name:'鎬荤鑱岀巼',type:'bar',data:tR,itemStyle:{color:'#e74c3c',borderRadius:[6,6,0,0]},barWidth:'30%',label:{show:true,position:'top',fontSize:10,fontWeight:'bold',formatter:p=>fr(p.value)}}
+    ]
   });
-  rows.forEach((r,i)=>{svg.appendChild(setAttr(ns('text'),{x:ml-6,y:mt+i*ch1+ch1/2+4,'text-anchor':'end',fill:'#555','font-size':'10'}).appendChild(document.createTextNode(r))&&null);});
-  cols.forEach((c,i)=>{svg.appendChild(setAttr(ns('text'),{x:ml+i*cw1+cw1/2,y:mt+rows.length*ch1+14,'text-anchor':'end',fill:'#666','font-size':'8',transform:`rotate(-30,${ml+i*cw1+cw1/2},${mt+rows.length*ch1+14})`}).appendChild(document.createTextNode(c))&&null);});
-  c.appendChild(svg);
 }
 
-// ========== RENDER ==========
+function renderResignType(){
+  const d=D(),rw=bus(d).reduce((a,b)=>a+b.rw,0),rg=bus(d).reduce((a,b)=>a+b.rg,0);
+  const c=echarts.init(document.getElementById('chartResignType'));charts.resignType=c;
+  c.setOption({tooltip:{trigger:'item'},legend:{bottom:0,textStyle:{fontSize:11}},
+    series:[{name:'绂昏亴绫诲瀷',type:'pie',radius:['45%','70%'],center:['50%','47%'],
+      data:[{name:'鐧介绂昏亴',value:rw,itemStyle:{color:'#4e6ef2'}},{name:'鐏伴绂昏亴',value:rg,itemStyle:{color:'#f39c12'}}],
+      label:{formatter:'{b}: {c}浜篭n({d}%)',fontSize:12},
+      emphasis:{label:{fontSize:16,fontWeight:'bold'}}
+    }],
+    graphic:[{type:'text',left:'center',top:'42%',style:{text:'绂昏亴鎬绘暟\n'+d.sum.tr,textAlign:'center',fontSize:15,fontWeight:'bold',fill:'#2c3e50'}}]
+  });
+}
+
+function renderStaffResign(){
+  const d=D(),rds=leafs(d).filter(x=>x.rt>0).sort((a,b)=>b.t-a.t);
+  const names=rds.map(x=>x.d4||x.d3),staff=rds.map(x=>x.t),resign=rds.map(x=>x.rt),rates=rds.map(x=>x.rtR);
+  const c=echarts.init(document.getElementById('chartStaffResign'));charts.staffResign=c;
+  c.setOption({tooltip:{trigger:'axis',axisPointer:{type:'shadow'},formatter:function(ps){let r=ps[0].name+'<br/>';ps.forEach(p=>r+=p.marker+p.seriesName+': <b>'+p.value+'</b><br/>');return r;}},
+    legend:{data:['鍦ㄨ亴浜烘暟','绂昏亴浜烘暟'],bottom:0},
+    grid:{left:10,right:50,top:20,bottom:60,containLabel:true},
+    xAxis:{type:'category',data:names,axisLabel:{fontSize:11,rotate:20}},
+    yAxis:{type:'value',name:'浜烘暟'},
+    series:[
+      {name:'鍦ㄨ亴浜烘暟',type:'bar',data:staff.map(v=>({value:v,itemStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#4e6ef2'},{offset:1,color:'#a0b4f7'}]),borderRadius:[6,6,0,0]}})),barWidth:30,label:{show:true,position:'top',fontSize:10}},
+      {name:'绂昏亴浜烘暟',type:'bar',data:resign.map((v,i)=>({value:v,itemStyle:{color:'#e74c3c',borderRadius:[6,6,0,0]}})),barWidth:30,label:{show:true,position:'top',fontSize:10,fontWeight:'bold',formatter:p=>p.value+' ('+fr(rates[p.dataIndex])+')'}}
+    ]
+  });
+}
+
+function renderHeatmap(){
+  const d=D(),regions=[{name:'娆ф床涓€鍖?,depts:['涓归害鍖?,'鑻卞浗鍖?,'鑽峰叞鍖?]},{name:'娆ф床浜屽尯',depts:['姣斿埄鏃跺尯','娉曞浗鍖?]},{name:'娆ф床涓夊尯',depts:['瑗跨彮鐗欏尯','鎰忓ぇ鍒╁尯','鍖堢墮鍒╁尯']},{name:'鍏朵粬鍖哄煙',depts:['婢虫床鍖?,'鏃ユ湰鍖?,'鍖楃編鍖?]},{name:'鑱岃兘閮ㄩ棬',depts:['缁忚惀绠＄悊閮?,'閿€鍞鏈嶉儴','浜や粯杩愯惀閮?,'PBU鎶€鏈儴','鍥涙捣鎹疯繍椤圭洰閮?]}];
+  const data=[],xAxis=[];
+  regions.forEach((reg,ri)=>{reg.depts.forEach(dn=>{const dept=d.depts.find(x=>(x.d4===dn||x.d3===dn)&&!x.sub);if(dept&&dept.t>0){data.push([ri,xAxis.length,dept.rtR||0]);xAxis.push(dn);}});});
+  const c=echarts.init(document.getElementById('chartHeatmap'));charts.heatmap=c;
+  c.setOption({tooltip:{formatter:function(p){let row=regions[p.value[1]];let col=xAxis[p.value[0]];return '<b>'+row.name+' > '+col+'</b><br/>绂昏亴鐜? <b>'+fr(p.value[2])+'</b>';}},
+    grid:{left:100,right:90,top:10,bottom:60,containLabel:true},
+    xAxis:{type:'category',data:xAxis,axisLabel:{fontSize:10,rotate:30},splitArea:{show:true}},
+    yAxis:{type:'category',data:regions.map(r=>r.name),axisLabel:{fontSize:11},splitArea:{show:true}},
+    visualMap:{min:0,max:Math.max(...data.map(d=>d[2]),10),calculable:true,orient:'vertical',right:10,top:'center',inRange:{color:['#e8f8ef','#fef9e7','#fde8e8','#e74c3c']},text:['楂?,'浣?],textStyle:{fontSize:10}},
+    series:[{type:'heatmap',data:data.map(d=>[d[1],d[0],d[2]]),label:{show:true,fontSize:11,fontWeight:'bold',formatter:p=>fr(p.value[2])},emphasis:{itemStyle:{shadowBlur:10,shadowColor:'rgba(0,0,0,0.25)'}}}]
+  });
+}
+
+function renderTable(){
+  const d=D();let h='<table><thead><tr><th>浜岀骇缁勭粐</th><th>涓夌骇缁勭粐</th><th>鍥涚骇缁勭粐</th><th>鍦ㄨ亴-鐧介</th><th>鍦ㄨ亴-鐏伴</th><th>鍦ㄨ亴-鎬?/th><th>绂昏亴-鐧介</th><th>绂昏亴-鐏伴</th><th>绂昏亴-鎬?/th><th>绂昏亴鐜?鐧介</th><th>绂昏亴鐜?鐏伴</th><th>绂昏亴鐜?鎬?/th></tr></thead><tbody>';
+  d.depts.forEach(r=>{if(r.t===0&&!r.sub)return;let cls=r.isBu?'row-bu':r.sub?'row-subtotal':'';h+='<tr class="'+cls+'"><td>'+ (r.bu||'')+'</td><td>'+r.d3+'</td><td>'+(r.d4||'-')+'</td><td>'+r.w+'</td><td>'+r.g+'</td><td><b>'+r.t+'</b></td><td>'+r.rw+'</td><td>'+r.rg+'</td><td><b>'+r.rt+'</b></td><td><span class="rate-badge '+rc(r.rwR)+'">'+fr(r.rwR)+'</span></td><td><span class="rate-badge '+rc(r.rgR)+'">'+fr(r.rgR)+'</span></td><td><span class="rate-badge '+rc(r.rtR)+'">'+fr(r.rtR)+'</span></td></tr>';});
+  h+='</tbody></table>';document.getElementById('dataTable').innerHTML=h;
+}
+
 function renderAll(){
-  const d=D(),s=d.s;
-  
-  // KPI
-  const hr=lf(d).filter(x=>x.rtR!==null&&x.rtR>=5).length;
-  const ar=lf(d).filter(x=>x.rtR!==null&&x.rtR>=3).length;
-  const bw=bu(d).reduce((a,b)=>a+b.w,0),bg=bu(d).reduce((a,b)=>a+b.g,0);
-  const rw=bu(d).reduce((a,b)=>a+b.rw,0),rg=bu(d).reduce((a,b)=>a+b.rg,0);
-  document.getElementById('kpi').innerHTML=
-    `<div class="kc blue"><div class="kl">PBU鍦ㄨ亴鎬讳汉鏁?/div><div class="kv">${s.ts}</div><div class="ks">鐧介 ${bw} | 鐏伴 ${bg}</div></div>`+
-    `<div class="kc ${s.tr>5?'red':'orange'}"><div class="kl">${d.t}浜烘暟</div><div class="kv">${s.tr}</div><div class="ks">鐧介 ${rw} | 鐏伴 ${rg}</div></div>`+
-    `<div class="kc ${s.or>=5?'red':s.or>=3?'orange':'blue'}"><div class="kl">${d.t}鐜?/div><div class="kv">${fr(s.or)}</div><div class="ks">鐧介 ${fr(s.wr)} | 鐏伴 ${fr(s.gr)}</div></div>`+
-    `<div class="kc ${hr>0?'red':'orange'}"><div class="kl">楂橀闄╅儴闂?(鈮?%)</div><div class="kv">${hr}</div><div class="kd" style="margin-top:4px">闇€閲嶇偣鍏虫敞</div></div>`+
-    `<div class="kc blue"><div class="kl">闇€鍏虫敞閮ㄩ棬 (鈮?%)</div><div class="kv">${ar}</div><div class="ks">鍏?${lf(d).length} 涓儴闂?/div></div>`;
-
-  // Chart 1: Rate bar
-  const lfs=lf(d).filter(x=>x.rtR!==null).sort((a,b)=>(b.rtR||0)-(a.rtR||0));
-  barChart('c1',lfs.map(x=>{let n=x.d4||x.d3;if(x.bu)n=x.bu+' > '+n;return n;}),lfs.map(x=>x.rtR),{w:680,h:460,ml:10,mr:70,mt:20,mb:20});
-
-  // Chart 2: Donut
-  const bs=bu(d);
-  donutChart('c2',bs.map(x=>(x.bu||x.d3).replace('鍚堣','').trim()),bs.map(x=>x.t),'鍦ㄨ亴浜烘暟');
-
-  // Chart 3: BU compare
-  const bss=bu(d).filter(x=>x.t>0);
-  groupedBar('c3',bss.map(x=>{let n=x.d3;if(x.bu)n=x.bu;return n.replace('鍚堣','').trim();}),[bss.map(x=>x.rwR||0),bss.map(x=>x.rgR||0),bss.map(x=>x.rtR||0)],{w:500,h:380,ml:10,mr:20,mt:20,mb:55,rotate:true});
-
-  // Chart 4: Resign type pie
-  donutChart('c4',['鐧介绂昏亴','鐏伴绂昏亴'],[rw,rg],'绂昏亴鎬绘暟\n'+s.tr);
-
-  // Chart 5: Staff vs Resign
-  const rds=lf(d).filter(x=>x.rt>0).sort((a,b)=>b.t-a.t);
-  groupedBar('c5',rds.map(x=>x.d4||x.d3),[rds.map(x=>x.t),rds.map(x=>x.rt)],{w:500,h:400,ml:10,mr:30,mt:20,mb:55,rotate:true});
-
-  // Chart 6: Heatmap
-  const regions=['娆ф床涓€鍖?,'娆ф床浜屽尯','娆ф床涓夊尯','鍏朵粬鍖哄煙','鑱岃兘閮ㄩ棬'];
-  const deptGroups=[['涓归害鍖?,'鑻卞浗鍖?,'鑽峰叞鍖?],['姣斿埄鏃跺尯','娉曞浗鍖?],['瑗跨彮鐗欏尯','鎰忓ぇ鍒╁尯','鍖堢墮鍒╁尯'],['婢虫床鍖?,'鏃ユ湰鍖?,'鍖楃編鍖?],['缁忚惀绠＄悊閮?,'閿€鍞鏈嶉儴','浜や粯杩愯惀閮?,'PBU鎶€鏈儴','鍥涙捣鎹疯繍椤圭洰閮?]];
-  const hdata=[],hcols=[];
-  deptGroups.forEach((dgs,ri)=>{dgs.forEach(dn=>{const dept=d.d.find(x=>(x.d4===dn||x.d3===dn)&&!x.s);if(dept&&dept.t>0){hdata.push([ri,hcols.length,dept.rtR||0]);hcols.push(dn);}});});
-  heatmapChart('c6',regions,hcols,hdata,{h:400});
-
-  // Table
-  let h='<table><thead><tr><th>浜岀骇缁勭粐</th><th>涓夌骇缁勭粐</th><th>鍥涚骇缁勭粐</th><th>鍦ㄨ亴-鐧介</th><th>鍦ㄨ亴-鐏伴</th><th>鍦ㄨ亴-鎬?/th><th>绂昏亴-鐧介</th><th>绂昏亴-鐏伴</th><th>绂昏亴-鎬?/th><th>绂昏亴鐜?鐧介</th><th>绂昏亴鐜?鐏伴</th><th>绂昏亴鐜?鎬?/th></tr></thead><tbody>';
-  d.d.forEach(r=>{if(r.t===0&&!r.s)return;let cls=r.ib?'bt':r.s?'st':'';h+=`<tr class="${cls}"><td>${r.bu||''}</td><td>${r.d3}</td><td>${r.d4||'-'}</td><td>${r.w}</td><td>${r.g}</td><td><b>${r.t}</b></td><td>${r.rw}</td><td>${r.rg}</td><td><b>${r.rt}</b></td><td><span class="rb ${rc(r.rwR)}">${fr(r.rwR)}</span></td><td><span class="rb ${rc(r.rgR)}">${fr(r.rgR)}</span></td><td><span class="rb ${rc(r.rtR)}">${fr(r.rtR)}</span></td></tr>`;});
-  h+='</tbody></table>';document.getElementById('tb').innerHTML=h;
+  Object.values(charts).forEach(c=>{try{c.dispose()}catch(e){}});
+  for(let k in charts)delete charts[k];
+  renderKPI();renderRateBar();renderComposition();renderBuCompare();
+  renderResignType();renderStaffResign();renderHeatmap();renderTable();
 }
-
-function sw(t){T=t;document.querySelectorAll('.tb').forEach(b=>b.classList.remove('ac'));document.querySelectorAll('.tb').forEach(b=>{if((t==='active'&&b.textContent.includes('涓诲姩'))||(t==='full'&&b.textContent.includes('鍏ㄩ噺')))b.classList.add('ac');});renderAll();}
-
-renderAll();
+window.switchTab=function(t){tab=t;document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.tab-btn').forEach(b=>{if((t==='active'&&b.textContent.includes('涓诲姩'))||(t==='full'&&b.textContent.includes('鍏ㄩ噺')))b.classList.add('active');});renderAll();};
+renderAll();window.addEventListener('resize',()=>Object.values(charts).forEach(c=>{try{c.resize()}catch(e){}}));
+}
 </script>
 </body>
 </html>
