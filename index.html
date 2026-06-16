@@ -313,10 +313,10 @@ function computePassiveData(ad,fd){
       krtR:(f.krt||0)-(a.krt||0)>0?Math.round(((f.krt||0)-(a.krt||0))/(f.kt+(f.krt||0)-(a.krt||0))*10000)/100:null});
     if(!f.sub){tW+=f.w;tG+=f.g;tT+=f.t;tRw+=pRw;tRg+=pRg;tRt+=pRt;}
   }
-  // sum直接复用fullData，确保在职总人数与主动/全量一致（避免漏算直接挂靠员工）
-  const pTr=fd.sum.tr-ad.sum.tr;
-  const pOr=pTr>0?Math.round(pTr/(fd.sum.ts+pTr)*10000)/100:0;
-  return{title:'被动离职',depts:pd,sum:{ts:fd.sum.ts,tr:pTr,or:pOr,wr:fd.sum.wr,gr:fd.sum.gr,kts:ad.sum.kts,ktr:fd.sum.ktr-ad.sum.ktr,kor:fd.sum.kor-ad.sum.kor}};
+  const tOr=tRt>0?Math.round(tRt/(tT+tRt)*10000)/100:0;
+  const tWr=tRw>0?Math.round(tRw/(tW+tRw)*10000)/100:0;
+  const tGr=tRg>0?Math.round(tRg/(tG+tRg)*10000)/100:0;
+  return{title:'被动离职',depts:pd,sum:{ts:tT,tr:tRt,or:tOr,wr:tWr,gr:tGr,kts:ad.sum.kts,ktr:pd.reduce((s,x)=>s+(x.krt||0),0),kor:0}};
 }
 let currentMonth='apr';
 function init(){
