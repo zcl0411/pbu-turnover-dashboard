@@ -51,8 +51,7 @@ body { font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','M
 .container { max-width: 1640px; margin: 0 auto; padding: 24px 28px; }
 
 /* KPI Grid - 两行布局：通用指标 + 关键人才 */
-.kpi-grid { display:grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 20px; }
-.kpi-grid.key-talent-row { grid-template-columns: repeat(2, 1fr); }
+.kpi-grid { display:grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 20px; }
 .kpi-card { background: var(--card-bg); border-radius: var(--radius); padding: 18px 18px; box-shadow: var(--shadow-sm); position:relative; overflow:hidden; transition: transform 0.2s, box-shadow 0.2s; cursor:default; }
 .kpi-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
 .kpi-card .kpi-icon-wrap { width: 40px; height: 40px; border-radius: 11px; display:flex; align-items:center; justify-content:center; font-size: 20px; margin-bottom: 10px; }
@@ -331,27 +330,23 @@ function renderKPI(){
   const rw=bus(d).reduce((a,b)=>a+b.rw,0),rg=bus(d).reduce((a,b)=>a+b.rg,0);
   const hr=leafs(d).filter(x=>x.rtR!==null&&x.rtR>=5).length;
   const ar=leafs(d).filter(x=>x.rtR!==null&&x.rtR>=3).length;
-  // 第一行：通用KPI（4列）
-  document.getElementById('kpiGrid').innerHTML=
-    '<div class="kpi-card"><div class="kpi-icon-wrap blue">&#x1f465;</div><div class="kpi-label">PBU在职总人数</div><div class="kpi-value">'+s.ts+'</div><div class="kpi-sub"><span>白领 '+bw+'</span><span>灰领 '+bg_1+'</span></div></div>'+
-    '<div class="kpi-card"><div class="kpi-icon-wrap '+(s.tr>5?'red':'orange')+'">&#x1f6aa;</div><div class="kpi-label">'+d.title+'人数</div><div class="kpi-value">'+s.tr+'</div><div class="kpi-sub"><span>白领 '+rw+'</span><span>灰领 '+rg+'</span></div></div>'+
-    '<div class="kpi-card"><div class="kpi-icon-wrap '+(s.or>=5?'red':s.or>=3?'orange':'blue')+'">&#x1f4ca;</div><div class="kpi-label">'+d.title+'率</div><div class="kpi-value">'+fr(s.or)+'</div><div class="kpi-sub"><span>白领 '+fr(s.wr)+'</span><span>灰领 '+fr(s.gr)+'</span></div></div>'+
-    '<div class="kpi-card"><div class="kpi-icon-wrap '+(hr>0?'red':'orange')+'">&#x26a0;</div><div class="kpi-label">高风险部门 (≥5%)</div><div class="kpi-value">'+hr+'</div><div class="kpi-sub">需关注≥3%: '+ar+'个 | 共 '+leafs(d).length+' 部门</div></div>';
-}
-
-function renderKPIKeyTalent(){
-  const d=D(),s=d.sum;
+  // 关键人才
   const ktw=bus(d).reduce((a,b)=>a+(b.kw||0),0),ktg=bus(d).reduce((a,b)=>a+(b.kg||0),0);
   const ktr=bus(d).reduce((a,b)=>a+(b.krt||0),0);
-  // 找出有关键人才离职的部门
   const ktRiskDepts = leafs(d).filter(x=>(x.krt||0)>0);
   const riskHtml = ktRiskDepts.length > 0
     ? ktRiskDepts.map(x=>`<span style="color:var(--danger);font-weight:600">${x.d4||x.d3}</span>`).join('、')
     : '<span style="color:var(--success)">无关键人才流失</span>';
-  // 第二行：关键人才KPI（2列）
-  document.getElementById('kpiKeyTalent').innerHTML=
+  // 第一行：PBU在职总人数 / 关键人才在职总数 / 全量离职人数
+  document.getElementById('kpiGrid').innerHTML=
+    '<div class="kpi-card"><div class="kpi-icon-wrap blue">&#x1f465;</div><div class="kpi-label">PBU在职总人数</div><div class="kpi-value">'+s.ts+'</div><div class="kpi-sub"><span>白领 '+bw+'</span><span>灰领 '+bg_1+'</span></div></div>'+
     '<div class="kpi-card"><div class="kpi-icon-wrap purple">&#x1f451;</div><div class="kpi-label">🎯 关键人才在职总数</div><div class="kpi-value">'+s.kts+'</div><div class="kpi-sub"><span>白领 '+ktw+'</span><span>灰领 '+ktg+'</span></div></div>'+
-    '<div class="kpi-card"><div class="kpi-icon-wrap purple">&#x1f3c6;</div><div class="kpi-label">🎯 关键人才'+d.title+'情况</div><div class="kpi-value" style="font-size:22px">离职'+ktr+'人 / 离职率 '+fr(s.kor)+'</div><div class="kpi-sub" style="margin-top:8px"><span style="font-size:11px">⚠️ 流失风险：</span>'+riskHtml+'</span></div></div>';
+    '<div class="kpi-card"><div class="kpi-icon-wrap '+(s.tr>5?'red':'orange')+'">&#x1f6aa;</div><div class="kpi-label">'+d.title+'人数</div><div class="kpi-value">'+s.tr+'</div><div class="kpi-sub"><span>白领 '+rw+'</span><span>灰领 '+rg+'</span></div></div>';
+  // 第二行：高风险部门 / 关键人才全量离职情况 / 全量离职率
+  document.getElementById('kpiKeyTalent').innerHTML=
+    '<div class="kpi-card"><div class="kpi-icon-wrap '+(hr>0?'red':'orange')+'">&#x26a0;</div><div class="kpi-label">高风险部门 (≥5%)</div><div class="kpi-value">'+hr+'</div><div class="kpi-sub">需关注≥3%: '+ar+'个 | 共 '+leafs(d).length+' 部门</div></div>'+
+    '<div class="kpi-card"><div class="kpi-icon-wrap purple">&#x1f3c6;</div><div class="kpi-label">🎯 关键人才'+d.title+'情况</div><div class="kpi-value" style="font-size:22px">离职'+ktr+'人 / 离职率 '+fr(s.kor)+'</div><div class="kpi-sub" style="margin-top:8px"><span style="font-size:11px">⚠️ 流失风险：</span>'+riskHtml+'</span></div></div>'+
+    '<div class="kpi-card"><div class="kpi-icon-wrap '+(s.or>=5?'red':s.or>=3?'orange':'blue')+'">&#x1f4ca;</div><div class="kpi-label">'+d.title+'率</div><div class="kpi-value">'+fr(s.or)+'</div><div class="kpi-sub"><span>白领 '+fr(s.wr)+'</span><span>灰领 '+fr(s.gr)+'</span></div></div>';
 }
 
 function renderRateBar(){
@@ -549,7 +544,6 @@ function renderAll(){
   Object.values(charts).forEach(c=>{try{c.dispose()}catch(e){}});
   for(let k in charts)delete charts[k];
   try{renderKPI();}catch(e){console.error('renderKPI error:',e);}
-  try{renderKPIKeyTalent();}catch(e){console.error('renderKPIKeyTalent error:',e);}
   try{renderRateBar();}catch(e){console.error('renderRateBar error:',e);}
   try{renderKeyTalent();}catch(e){console.error('renderKeyTalent error:',e);}
   try{renderStaffResign();}catch(e){console.error('renderStaffResign error:',e);}
