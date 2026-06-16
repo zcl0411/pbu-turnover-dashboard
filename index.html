@@ -485,6 +485,7 @@ function renderKeyTalent(){
 
   const c = echarts.init(document.getElementById('chartKeyTalent')); charts.keyTalent = c;
   c.setOption({
+    color: ['#1e40af', '#dc2626'],
     tooltip: {
       trigger: 'axis',
       axisPointer: { type: 'shadow' },
@@ -555,7 +556,7 @@ function renderStaffResign(){
   const d=D(),rds=leafs(d).filter(x=>x.rt>0).sort((a,b)=>b.t-a.t);
   const names=rds.map(x=>x.d4||x.d3),staff=rds.map(x=>x.t),resign=rds.map(x=>x.rt),rates=rds.map(x=>x.rtR);
   const c=echarts.init(document.getElementById('chartStaffResign'));charts.staffResign=c;
-  c.setOption({tooltip:{trigger:'axis',axisPointer:{type:'shadow'},formatter:function(ps){let r=ps[0].name+'<br/>';ps.forEach(p=>r+=p.marker+p.seriesName+': <b>'+p.value+'</b><br/>');return r;}},
+  c.setOption({color:['#1e40af','#dc2626'],tooltip:{trigger:'axis',axisPointer:{type:'shadow'},formatter:function(ps){let r=ps[0].name+'<br/>';ps.forEach(p=>r+=p.marker+p.seriesName+': <b>'+p.value+'</b><br/>');return r;}},
     legend:{data:['在职人数','离职人数'],bottom:0},
     grid:{left:10,right:50,top:20,bottom:60,containLabel:true},
     xAxis:{type:'category',data:names,axisLabel:{fontSize:11,rotate:20}},
