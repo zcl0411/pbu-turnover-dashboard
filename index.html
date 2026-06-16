@@ -388,6 +388,8 @@ function fr(v){return v===null||v===undefined?'-':v.toFixed(2)+'%';}
 function rc(v){return v===null||v===undefined?'rate-none':v>=10?'rate-high':v>=5?'rate-mid':'rate-low';}
 function leafs(d){return d.depts.filter(x=>!x.sub&&x.t>0);}
 function bus(d){return d.depts.filter(x=>x.isBu);}
+// 部门名称缩写
+function shortName(n){return n.replace(/区$/,'').replace(/部$/,'').replace('项目部','项目').replace('PBU','');}
 
 function renderKPI(){
   const d=D(),s=d.sum,bw=bus(d).reduce((a,b)=>a+b.w,0),bg_1=bus(d).reduce((a,b)=>a+b.g,0);
@@ -413,7 +415,7 @@ function renderKPI(){
 
 function renderRateBar(){
   const d=D(),lfs=leafs(d).filter(x=>x.rtR!==null).sort((a,b)=>(b.rtR||0)-(a.rtR||0));
-  const names=lfs.map(x=>{let n=x.d4||x.d3;return n;});
+  const names=lfs.map(x=>shortName(x.d4||x.d3));
   const rates=lfs.map(x=>x.rtR);
   const c=echarts.init(document.getElementById('chartRateBar'));charts.rateBar=c;
   c.setOption({tooltip:{trigger:'axis',axisPointer:{type:'shadow'},formatter:p=>'<b>'+p[0].name+'</b><br/>离职率: <b style="font-size:16px">'+fr(p[0].value)+'</b>'},
@@ -478,7 +480,7 @@ function renderKeyTalent(){
   const d=D();
   // 只显示有关键人才的部门
   const deptsWithKT = leafs(d).filter(x=>(x.kt||0)>0).sort((a,b)=>(b.kt||0)-(a.kt||0));
-  const names = deptsWithKT.map(x=>x.d4||x.d3);
+  const names = deptsWithKT.map(x=>shortName(x.d4||x.d3));
   // 不区分领色：关键人才在职总数 vs 关键人才离职总数
   const kOnJob = deptsWithKT.map(x=>(x.kw||0)+(x.kg||0));
   const kResign = deptsWithKT.map(x=>(x.krw||0)+(x.krg||0));
@@ -554,7 +556,7 @@ function renderKeyVsTotal(){
 
 function renderStaffResign(){
   const d=D(),rds=leafs(d).filter(x=>x.rt>0).sort((a,b)=>b.t-a.t);
-  const names=rds.map(x=>x.d4||x.d3),staff=rds.map(x=>x.t),resign=rds.map(x=>x.rt),rates=rds.map(x=>x.rtR);
+  const names=rds.map(x=>shortName(x.d4||x.d3)),staff=rds.map(x=>x.t),resign=rds.map(x=>x.rt),rates=rds.map(x=>x.rtR);
   const c=echarts.init(document.getElementById('chartStaffResign'));charts.staffResign=c;
   c.setOption({color:['#1e40af','#dc2626'],tooltip:{trigger:'axis',axisPointer:{type:'shadow'},formatter:function(ps){let r=ps[0].name+'<br/>';ps.forEach(p=>r+=p.marker+p.seriesName+': <b>'+p.value+'</b><br/>');return r;}},
     legend:{data:['在职人数','离职人数'],bottom:0},
