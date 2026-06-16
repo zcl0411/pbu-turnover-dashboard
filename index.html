@@ -502,8 +502,8 @@ function renderKeyTalent(){
       }
     },
     legend: { data: ['关键人才在职', '关键人才离职'], bottom: 0, textStyle: { fontSize: 11 } },
-    grid: { left: 10, right: 20, top: 15, bottom: 40, containLabel: true },
-    xAxis: { type: 'category', data: names, axisLabel: { fontSize: 11, rotate: 25 } },
+    grid: { left: 10, right: 20, top: 15, bottom: 60, containLabel: true },
+    xAxis: { type: 'category', data: names, axisLabel: { fontSize: 11, rotate: 30, interval: 0 } },
     yAxis: { type: 'value', name: '人数', splitLine: { lineStyle: { type: 'dashed', color: '#eee' } } },
     series: [
       { name: '关键人才在职', type: 'bar', data: kOnJob,
