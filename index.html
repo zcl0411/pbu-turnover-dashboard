@@ -307,7 +307,8 @@ function computePassiveData(ad,fd){
   const tOr=tRt>0?Math.round(tRt/(tT+tRt)*10000)/100:0;
   const tWr=tRw>0?Math.round(tRw/(tW+tRw)*10000)/100:0;
   const tGr=tRg>0?Math.round(tRg/(tG+tRg)*10000)/100:0;
-  return{title:'被动离职',depts:pd,sum:{ts:tT,tr:tRt,or:tOr,wr:tWr,gr:tGr,kts:ad.sum.kts,ktr:pd.reduce((s,x)=>s+(x.krt||0),0),kor:0}};
+  // ts/kts 与离职类型无关，直接沿用全量数据
+  return{title:'被动离职',depts:pd,sum:{ts:fd.sum.ts,tr:tRt,or:tOr,wr:tWr,gr:tGr,kts:fd.sum.kts,ktr:pd.reduce((s,x)=>s+(x.krt||0),0),kor:0}};
 }
 let currentMonth='apr';
 function init(){
