@@ -420,9 +420,9 @@ function renderRateBar(){
     grid:{left:10,right:70,top:20,bottom:20,containLabel:true},
     xAxis:{type:'value',axisLabel:{formatter:'{value}%'},splitLine:{lineStyle:{type:'dashed',color:'#eee'}}},
     yAxis:{type:'category',data:names.reverse(),axisLabel:{fontSize:11,width:140,overflow:'truncate'},inverse:true},
-    series:[{type:'bar',data:rates.reverse().map(v=>({value:v,itemStyle:{color:v>=10?'#e74c3c':v>=5?'#f39c12':v>=3?'#4e6ef2':'#27ae60',borderRadius:[0,6,6,0]}})),barWidth:22,
+    series:[{type:'bar',data:rates.reverse().map(v=>({value:v,itemStyle:{color:v>=10?'#dc2626':v>=5?'#d97706':v>=3?'#1e40af':'#059669',borderRadius:[0,6,6,0]}})),barWidth:22,
       label:{show:true,position:'right',fontSize:11,fontWeight:'bold',formatter:p=>fr(p.value)},
-      markLine:{silent:true,symbol:'none',data:[{xAxis:d.sum.or,label:{formatter:'整体 '+fr(d.sum.or),position:'start',fontSize:11},lineStyle:{color:'#e74c3c',type:'dashed',width:2}}]}
+      markLine:{silent:true,symbol:'none',data:[{xAxis:d.sum.or,label:{formatter:'整体 '+fr(d.sum.or),position:'start',fontSize:11},lineStyle:{color:'#dc2626',type:'dashed',width:2}}]}
     }]
   });
 }
@@ -500,10 +500,10 @@ function renderKeyTalent(){
     yAxis: { type: 'value', name: '人数', splitLine: { lineStyle: { type: 'dashed', color: '#eee' } } },
     series: [
       { name: '关键人才在职', type: 'bar', data: kOnJob,
-        itemStyle: { color: '#8e44ad', borderRadius: [6,6,0,0] }, barWidth: '40%', barMaxWidth: 32,
+        itemStyle: { color: '#1e40af', borderRadius: [6,6,0,0] }, barWidth: '40%', barMaxWidth: 32,
         label: { show: true, position: 'top', fontSize: 10, formatter: p => p.value } },
       { name: '关键人才离职', type: 'bar', data: kResign,
-        itemStyle: { color: '#e74c3c', borderRadius: [6,6,0,0] }, barWidth: '40%', barMaxWidth: 32,
+        itemStyle: { color: '#dc2626', borderRadius: [6,6,0,0] }, barWidth: '40%', barMaxWidth: 32,
         label: { show: true, position: 'top', fontSize: 10, fontWeight: 'bold',
           formatter: function(p){ return p.value > 0 ? p.value + '人 ⚠️' : '-'; } } }
     ]
@@ -561,8 +561,8 @@ function renderStaffResign(){
     xAxis:{type:'category',data:names,axisLabel:{fontSize:11,rotate:20}},
     yAxis:{type:'value',name:'人数'},
     series:[
-      {name:'在职人数',type:'bar',data:staff.map(v=>({value:v,itemStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#4e6ef2'},{offset:1,color:'#a0b4f7'}]),borderRadius:[6,6,0,0]}})),barWidth:30,label:{show:true,position:'top',fontSize:10}},
-      {name:'离职人数',type:'bar',data:resign.map((v,i)=>({value:v,itemStyle:{color:'#e74c3c',borderRadius:[6,6,0,0]}})),barWidth:30,label:{show:true,position:'top',fontSize:10,fontWeight:'bold',formatter:p=>p.value+' ('+fr(rates[p.dataIndex])+')'}}
+      {name:'在职人数',type:'bar',data:staff.map(v=>({value:v,itemStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#1e40af'},{offset:1,color:'#3b82f6'}]),borderRadius:[6,6,0,0]}})),barWidth:30,label:{show:true,position:'top',fontSize:10}},
+      {name:'离职人数',type:'bar',data:resign.map((v,i)=>({value:v,itemStyle:{color:'#dc2626',borderRadius:[6,6,0,0]}})),barWidth:30,label:{show:true,position:'top',fontSize:10,fontWeight:'bold',formatter:p=>p.value+' ('+fr(rates[p.dataIndex])+')'}}
     ]
   });
 }
