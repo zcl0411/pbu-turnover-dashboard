@@ -650,7 +650,7 @@ window.switchMonth=function(m){
     else console.error('switchMonth: monthLabel not found!');
     // Update footnote year
     var fnYear=document.getElementById('footnoteYear');
-    if(fnYear){var yr=(m==='apr'?'26':'25');fnYear.textContent='3. 123格子、破格晋升、评优取'+yr+'年数据';}
+    if(fnYear){var yr=(m==='mar'||m==='apr'?'26':'25');fnYear.textContent='3. 123格子、破格晋升、评优取'+yr+'年数据';}
     console.log('switchMonth: calling renderAll for',m);
     renderAll();
     console.log('switchMonth: renderAll completed for',m);
