@@ -228,7 +228,7 @@ tbody tr.row-bu td { border-bottom: 1px solid #c7d2fe; font-size: 12px; }
     <p><strong>取数口径：</strong></p>
     <p>1. 取数范围：取当月月底体系内外在职员工（不含蓝领），剔除实习生、外包员工</p>
     <p>2. 离职率 = 离职人数 /（月底在职人数 + 离职人数）</p>
-    <p>3. 123格子、破格晋升、评优取26年数据</p>
+    <p id="footnoteYear">3. 123格子、破格晋升、评优取26年数据</p>
     <p>4. 主动离职看板只取主动离职的离职数据；全量看板包含所有离职类型</p>
     <p>5. <strong style="color:var(--primary)">关键岗位定义：</strong>AB类岗位员工；<strong style="color:var(--purple)">优秀人才定义：</strong>包含人才盘点123格子员工、集团+BU层年度评优获奖者、破格晋升员工</p>
     <p style="margin-top:4px;color:var(--danger)">注：部分员工架构直接挂靠在欧洲一区/三区，需单独合计</p>
@@ -648,6 +648,9 @@ window.switchMonth=function(m){
     var ml=document.getElementById('monthLabel');
     if(ml)ml.textContent=mi.periodLabel;
     else console.error('switchMonth: monthLabel not found!');
+    // Update footnote year
+    var fnYear=document.getElementById('footnoteYear');
+    if(fnYear){var yr=(m==='apr'?'26':'25');fnYear.textContent='3. 123格子、破格晋升、评优取'+yr+'年数据';}
     console.log('switchMonth: calling renderAll for',m);
     renderAll();
     console.log('switchMonth: renderAll completed for',m);
