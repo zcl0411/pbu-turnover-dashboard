@@ -389,7 +389,11 @@ function rc(v){return v===null||v===undefined?'rate-none':v>=10?'rate-high':v>=5
 function leafs(d){return d.depts.filter(x=>!x.sub&&x.t>0);}
 function bus(d){return d.depts.filter(x=>x.isBu);}
 // 部门名称缩写
-function shortName(n){return n.replace(/区$/,'').replace(/部$/,'').replace('项目部','项目').replace('PBU','');}
+function shortName(n){
+  if(n==='PBU HRBP Dept.') return 'HRBP';
+  if(n==='四海捷运项目部' || n==='四海捷运项目') return '四海';
+  return n.replace(/区$/,'').replace(/部$/,'').replace('项目部','项目').replace('PBU','');
+}
 
 function renderKPI(){
   const d=D(),s=d.sum,bw=bus(d).reduce((a,b)=>a+b.w,0),bg_1=bus(d).reduce((a,b)=>a+b.g,0);
