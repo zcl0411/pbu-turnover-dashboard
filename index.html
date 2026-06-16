@@ -52,6 +52,9 @@ body { font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','M
 
 /* KPI Grid - 单行六列 */
 .kpi-grid { display:grid; grid-template-columns: repeat(6, 1fr); gap: 14px; margin-bottom: 20px; }
+/* Module Section Title */
+.module-title { font-size: 18px; font-weight: 700; color: var(--text); padding: 8px 0 16px 0; margin-bottom: 12px; border-bottom: 2px solid var(--primary); letter-spacing: 1px; }
+
 .kpi-card { background: var(--card-bg); border-radius: var(--radius); padding: 18px 18px; box-shadow: var(--shadow-sm); position:relative; overflow:hidden; transition: transform 0.2s, box-shadow 0.2s; cursor:default; }
 .kpi-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
 .kpi-card .kpi-icon-wrap { width: 40px; height: 40px; border-radius: 11px; display:flex; align-items:center; justify-content:center; font-size: 20px; margin-bottom: 10px; }
@@ -141,12 +144,15 @@ tbody tr.row-bu td { border-bottom: 1px solid #c8d6f0; font-size: 12px; }
 </div>
 
 <div class="container">
+  <div class="module-title">一、PBU人员数据总览</div>
   <div class="kpi-grid" id="kpiGrid"></div>
+  <div class="module-title">二、离职数据分析</div>
   <div class="grid-3">
     <div class="panel"><div class="panel-header"><h3><span class="dot" style="background:#8e44ad"></span>有离职部门-在职/离职分析</h3></div><div class="chart-wrap" id="chartStaffResign" style="height:360px;"></div></div>
     <div class="panel"><div class="panel-header"><h3><span class="dot" style="background:var(--purple)"></span>🎯 关键岗位+优秀人才分析 <span class="key-talent-tag">AB类·123格子·评优·破格晋升</span></h3></div><div class="chart-wrap" id="chartKeyTalent" style="height:360px;"></div></div>
     <div class="panel"><div class="panel-header"><h3><span class="dot"></span>各部门离职率排名</h3></div><div class="chart-wrap" id="chartRateBar" style="height:360px;"></div></div>
   </div>
+  <div class="module-title">三、PBU人员明细数据</div>
   <div class="grid-full">
     <div class="panel"><div class="panel-header"><h3><span class="dot"></span>明细数据表（含关键人才）</h3></div><div class="table-wrap" id="dataTable"></div></div>
   </div>
